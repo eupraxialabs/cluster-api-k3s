@@ -14,8 +14,12 @@
     <execution />
   </component>
   <component name="GOROOT" url="file:///usr/local/opt/go/libexec" />
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="main" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
@@ -87,7 +91,7 @@
       <workItem from="1637345727103" duration="918000" />
       <workItem from="1637346702892" duration="962000" />
       <workItem from="1637347702658" duration="868000" />
-      <workItem from="1637348614263" duration="371000" />
+      <workItem from="1637348614263" duration="762000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1637334660154</created>
@@ -124,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637348732940</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Initial commit">
+      <created>1637349001133</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1637349001133</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
