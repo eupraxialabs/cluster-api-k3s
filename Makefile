@@ -1,9 +1,9 @@
 
 # Image URL to use all building/pushing image targets
-BOOTSTRAP_IMG ?= ghcr.io/zawachte-msft/cluster-api-k0s/bootstrap-controller:v0.1.2
+BOOTSTRAP_IMG ?= quay.io/eupraxialabs/cluster-api-k0s:bp-controller-v0.1.1
 
 # Image URL to use all building/pushing image targets
-CONTROLPLANE_IMG ?= ghcr.io/zawachte-msft/cluster-api-k0s/controlplane-controller:v0.1.2
+CONTROLPLANE_IMG ?= quay.io/eupraxialabs/cluster-api-k0s:cp-controller-v0.1.1
 
 
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)

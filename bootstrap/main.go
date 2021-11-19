@@ -27,8 +27,8 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	bootstrapv1alpha3 "../../cluster-api-k0s/bootstrap/api/v1alpha3"
-	"../../cluster-api-k0s/bootstrap/controllers"
+	bootstrapv1alpha3 "gitlab.com/eupraxialabs/cluster-api-k0s/bootstrap/api/v1alpha3"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/bootstrap/controllers"
 	clusterv1alpha3 "sigs.k8s.io/cluster-api/api/v1alpha3"
 	expv1alpha3 "sigs.k8s.io/cluster-api/exp/api/v1alpha3"
 	// +kubebuilder:scaffold:imports

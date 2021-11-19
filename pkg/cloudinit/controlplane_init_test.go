@@ -20,8 +20,8 @@ import (
 	"testing"
 
 	. "github.com/onsi/gomega"
-	infrav1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
-	"github.com/zawachte-msft/cluster-api-k0s/pkg/secret"
+	infrav1 "gitlab.com/eupraxialabs/cluster-api-k0s/bootstrap/api/v1alpha3"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/secret"
 )
 
 func TestControlPlaneInit(t *testing.T) {

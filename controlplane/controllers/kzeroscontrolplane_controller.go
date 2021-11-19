@@ -33,8 +33,8 @@ import (
 
 	"github.com/go-logr/logr"
 	"github.com/pkg/errors"
-	"github.com/zawachte-msft/cluster-api-k0s/pkg/kubeconfig"
-	"github.com/zawachte-msft/cluster-api-k0s/pkg/secret"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/kubeconfig"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/secret"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/tools/record"
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
@@ -55,9 +55,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/handler"
 	"sigs.k8s.io/controller-runtime/pkg/source"
 
-	controlplanev1 "github.com/zawachte-msft/cluster-api-k0s/controlplane/api/v1alpha3"
-	k0s "github.com/zawachte-msft/cluster-api-k0s/pkg/k0s"
-	"github.com/zawachte-msft/cluster-api-k0s/pkg/machinefilters"
+	controlplanev1 "gitlab.com/eupraxialabs/cluster-api-k0s/controlplane/api/v1alpha3"
+	k0s "gitlab.com/eupraxialabs/cluster-api-k0s/pkg/k0s"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/machinefilters"
 )
 
 // KZerosControlPlaneReconciler reconciles a KZerosControlPlane object

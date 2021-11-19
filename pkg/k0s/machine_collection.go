@@ -32,7 +32,7 @@ import (
 
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 
-	"github.com/eupraxialabs/cluster-api-k0s/pkg/machinefilters"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/machinefilters"
 
 	"sigs.k8s.io/cluster-api/util"
 	"sigs.k8s.io/cluster-api/util/conditions"

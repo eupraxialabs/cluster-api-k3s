@@ -5,9 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee57d4bd-41e7-4dbc-a9e6-1bd26b65eff1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/cluster-api-k0s.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/PROJECT" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/PROJECT" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/config/manager/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/config/manager/kustomization.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/controllers/kzerosconfig_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/controllers/kzerosconfig_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/controllers/suite_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/controllers/suite_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/PROJECT" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/PROJECT" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/api/v1alpha3/kthreescontrolplane_types.go" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/api/v1alpha3/kzeroscontrolplane_types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/config/manager/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/config/manager/kustomization.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/config/rbac/kthreescontrolplane_editor_role.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/config/rbac/kzeroscontrolplane_editor_role.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/config/rbac/kthreescontrolplane_viewer_role.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/config/rbac/kzeroscontrolplane_viewer_role.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/controllers/kzeroscontrolplane_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/controllers/kzeroscontrolplane_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/controllers/scale.go" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/controllers/scale.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/controllers/suite_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/controllers/suite_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/cloudinit/cloudinit.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/cloudinit/cloudinit.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/cloudinit/controlplane_init.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/cloudinit/controlplane_init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/cloudinit/controlplane_init_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/cloudinit/controlplane_init_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k0s/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k0s/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k0s/control_plane.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k0s/control_plane.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k0s/machine_collection.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k0s/machine_collection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k0s/management_cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k0s/management_cluster.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k0s/workload_cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k0s/workload_cluster.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k0s/workload_cluster_coredns.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k0s/workload_cluster_coredns.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/kubeconfig/kubeconfig.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/kubeconfig/kubeconfig.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/machinefilters/machine_filters.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/machinefilters/machine_filters.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/secret/certificates.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/secret/certificates.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/azure/k3s-template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/azure/k0s-template.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/deployment/bootstrap-k3s/v0.1.0/bootstrap-components.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/deployment/bootstrap-k0s/v0.1.0/bootstrap-components.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/deployment/bootstrap-k3s/v0.1.0/metadata.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/deployment/bootstrap-k0s/v0.1.0/metadata.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/deployment/control-plane-k3s/v0.1.0/control-plane-components.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/deployment/control-plane-k0s/v0.1.0/control-plane-components.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/deployment/control-plane-k3s/v0.1.0/metadata.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/deployment/control-plane-k0s/v0.1.0/metadata.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +75,20 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TF_FMT" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -69,12 +111,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1637350614345</updated>
-      <workItem from="1637350626656" duration="402000" />
+      <workItem from="1637350626656" duration="5667000" />
     </task>
+    <task id="LOCAL-00001" summary="Added running k0s in Docker.">
+      <created>1637351058387</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1637351058387</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added running k0s in Docker." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added running k0s in Docker." />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

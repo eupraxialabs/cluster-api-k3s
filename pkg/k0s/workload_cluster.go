@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
-	controlplanev1 "github.com/zawachte-msft/cluster-api-k0s/controlplane/api/v1alpha3"
+	controlplanev1 "gitlab.com/eupraxialabs/cluster-api-k0s/controlplane/api/v1alpha3"
 	corev1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

@@ -19,7 +19,7 @@ package cloudinit
 import (
 	"fmt"
 
-	"github.com/eupraxialabs/cluster-api-k0s/pkg/secret"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/secret"
 )
 
 // rewrite to pass in version of k0s
@@ -46,7 +46,8 @@ func NewInitControlPlane(input *ControlPlaneInput) ([]byte, error) {
 	input.WriteFiles = append(input.WriteFiles, input.AdditionalFiles...)
 	input.WriteFiles = append(input.WriteFiles, input.ConfigFile)
 
-	controlPlaneCloudJoinWithVersion := fmt.Sprintf(controlPlaneCloudInit, input.K0sVersion)
+	//	controlPlaneCloudJoinWithVersion := fmt.Sprintf(controlPlaneCloudInit, input.K0sVersion)
+	controlPlaneCloudJoinWithVersion := fmt.Sprintf("K0s Version: %s", input.K0sVersion)
 	userData, err := generate("InitControlplane", controlPlaneCloudJoinWithVersion, input)
 	if err != nil {
 		return nil, err

@@ -17,12 +17,12 @@ limitations under the License.
 package v1alpha3
 
 import (
-	"github.com/zawachte-msft/cluster-api-k0s/pkg/errors"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/errors"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 
-	cabp3v1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
+	cabp3v1 "gitlab.com/eupraxialabs/cluster-api-k0s/bootstrap/api/v1alpha3"
 )
 
 const (

@@ -1,7 +1,7 @@
 package k0s
 
 import (
-	bootstrapv1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
+	bootstrapv1 "gitlab.com/eupraxialabs/cluster-api-k0s/bootstrap/api/v1alpha3"
 )
 
 const DefaultK0sConfigLocation = "/etc/rancher/k0s/config.yaml"

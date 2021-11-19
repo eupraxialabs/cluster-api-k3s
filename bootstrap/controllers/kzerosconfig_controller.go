@@ -29,13 +29,13 @@ import (
 
 	"time"
 
-	"../../../cluster-api-k0s/pkg/k0s"
-	"../../../cluster-api-k0s/pkg/kubeconfig"
-	"../../../cluster-api-k0s/pkg/locking"
-	"../../../cluster-api-k0s/pkg/secret"
-	"../../../cluster-api-k0s/pkg/token"
 	"github.com/go-logr/logr"
 	"github.com/pkg/errors"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/k0s"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/kubeconfig"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/locking"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/secret"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/token"
 
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -50,8 +50,8 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	bootstrapv1 "../../../cluster-api-k0s/bootstrap/api/v1alpha3"
-	"../../../cluster-api-k0s/pkg/cloudinit"
+	bootstrapv1 "gitlab.com/eupraxialabs/cluster-api-k0s/bootstrap/api/v1alpha3"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/cloudinit"
 )
 
 // InitLocker is a lock that is used around k0s init

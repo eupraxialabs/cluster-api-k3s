@@ -21,7 +21,7 @@ import (
 
 	"github.com/go-logr/logr"
 	"github.com/pkg/errors"
-	"github.com/zawachte-msft/cluster-api-k0s/pkg/machinefilters"
+	"gitlab.com/eupraxialabs/cluster-api-k0s/pkg/machinefilters"
 	corev1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -30,9 +30,9 @@ import (
 	"k8s.io/apiserver/pkg/storage/names"
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 
-	bootstrapv1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
+	bootstrapv1 "gitlab.com/eupraxialabs/cluster-api-k0s/bootstrap/api/v1alpha3"
 
-	controlplanev1 "github.com/zawachte-msft/cluster-api-k0s/controlplane/api/v1alpha3"
+	controlplanev1 "gitlab.com/eupraxialabs/cluster-api-k0s/controlplane/api/v1alpha3"
 	"sigs.k8s.io/cluster-api/controllers/external"
 
 	"sigs.k8s.io/cluster-api/util/patch"

@@ -1,5 +1,5 @@
 domain: cluster.x-k8s.io
-repo: github.com/zawachte-msft/cluster-api-k0s/controlplane
+repo: gitlab.com/eupraxialabs/cluster-api-k0s/controlplane
 resources:
 - group: controlplane
   kind: KZerosControlPlane

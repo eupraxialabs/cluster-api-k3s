@@ -30,7 +30,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	bootstrapv1alpha3 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
+	bootstrapv1alpha3 "gitlab.com/eupraxialabs/cluster-api-k0s/bootstrap/api/v1alpha3"
 	// +kubebuilder:scaffold:imports
 )
 
