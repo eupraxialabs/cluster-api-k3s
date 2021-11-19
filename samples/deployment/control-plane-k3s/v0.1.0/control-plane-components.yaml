@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   labels:
     control-plane: controller-manager
-  name: capi-k3s-control-plane-system
+  name: capi-k0s-control-plane-system
 ---
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
@@ -14,7 +14,7 @@ metadata:
   labels:
     cluster.x-k8s.io/v1alpha2: v1alpha2
     cluster.x-k8s.io/v1alpha3: v1alpha3
-  name: kthreescontrolplanes.controlplane.cluster.x-k8s.io
+  name: kzeroscontrolplanes.controlplane.cluster.x-k8s.io
 spec:
   additionalPrinterColumns:
   - JSONPath: .status.initialized
@@ -22,7 +22,7 @@ spec:
     name: Initialized
     type: boolean
   - JSONPath: .status.ready
-    description: KThreesControlPlane API Server is ready to receive requests
+    description: KZerosControlPlane API Server is ready to receive requests
     name: API Server Available
     type: boolean
   - JSONPath: .spec.version
@@ -47,10 +47,10 @@ spec:
     type: integer
   group: controlplane.cluster.x-k8s.io
   names:
-    kind: KThreesControlPlane
-    listKind: KThreesControlPlaneList
-    plural: kthreescontrolplanes
-    singular: kthreescontrolplane
+    kind: KZerosControlPlane
+    listKind: KZerosControlPlaneList
+    plural: kzeroscontrolplanes
+    singular: kzeroscontrolplane
   scope: Namespaced
   subresources:
     scale:
@@ -60,7 +60,7 @@ spec:
     status: {}
   validation:
     openAPIV3Schema:
-      description: KThreesControlPlane is the Schema for the kthreescontrolplanes API
+      description: KZerosControlPlane is the Schema for the kzeroscontrolplanes API
       properties:
         apiVersion:
           description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -71,7 +71,7 @@ spec:
         metadata:
           type: object
         spec:
-          description: KThreesControlPlaneSpec defines the desired state of KThreesControlPlane
+          description: KZerosControlPlaneSpec defines the desired state of KZerosControlPlane
           properties:
             infrastructureTemplate:
               description: InfrastructureTemplate is a required reference to a custom resource offered by an infrastructure provider.
@@ -98,8 +98,8 @@ spec:
                   description: 'UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids'
                   type: string
               type: object
-            kthreesConfigSpec:
-              description: KThreesConfigSpec is a KThreesConfigSpec to use for initializing and joining machines to the control plane.
+            kzerosConfigSpec:
+              description: KZerosConfigSpec is a KZerosConfigSpec to use for initializing and joining machines to the control plane.
               properties:
                 agentConfig:
                   description: AgentConfig specifies configuration for the agent nodes
@@ -125,7 +125,7 @@ spec:
                         type: string
                       type: array
                     privateRegistry:
-                      description: 'TODO: take in a object or secret and write to file. this is not useful PrivateRegistry  registry configuration file (default: "/etc/rancher/k3s/registries.yaml")'
+                      description: 'TODO: take in a object or secret and write to file. this is not useful PrivateRegistry  registry configuration file (default: "/etc/rancher/k0s/registries.yaml")'
                       type: string
                   type: object
                 files:
@@ -146,7 +146,7 @@ spec:
                                 description: Key is the key in the secret's data map for this value.
                                 type: string
                               name:
-                                description: Name of the secret in the KThreesBootstrapConfig's namespace to use.
+                                description: Name of the secret in the KZerosBootstrapConfig's namespace to use.
                                 type: string
                             required:
                             - key
@@ -175,13 +175,13 @@ spec:
                     - path
                     type: object
                   type: array
-                postK3sCommands:
-                  description: PostK3sCommands specifies extra commands to run after k3s setup runs
+                postK0sCommands:
+                  description: PostK0sCommands specifies extra commands to run after k0s setup runs
                   items:
                     type: string
                   type: array
-                preK3sCommands:
-                  description: PreK3sCommands specifies extra commands to run before k3s setup runs
+                preK0sCommands:
+                  description: PreK0sCommands specifies extra commands to run before k0s setup runs
                   items:
                     type: string
                   type: array
@@ -195,7 +195,7 @@ spec:
                       description: 'AdvertisePort Port that apiserver uses to advertise to members of the cluster (default: listen-port) (default: 0)'
                       type: string
                     bindAddress:
-                      description: 'BindAddress k3s bind address (default: 0.0.0.0)'
+                      description: 'BindAddress k0s bind address (default: 0.0.0.0)'
                       type: string
                     clusterCidr:
                       description: 'ClusterCidr  Network CIDR to use for pod IPs (default: "10.42.0.0/16")'
@@ -207,7 +207,7 @@ spec:
                       description: 'ClusterDomain Cluster Domain (default: "cluster.local")'
                       type: string
                     disableComponents:
-                      description: DisableComponents  specifies extra commands to run before k3s setup runs
+                      description: DisableComponents  specifies extra commands to run before k0s setup runs
                       items:
                         type: string
                       type: array
@@ -234,7 +234,7 @@ spec:
                       type: array
                   type: object
                 version:
-                  description: Version specifies the k3s version
+                  description: Version specifies the k0s version
                   type: string
               type: object
             nodeDrainTimeout:
@@ -245,7 +245,7 @@ spec:
               format: int32
               type: integer
             upgradeAfter:
-              description: UpgradeAfter is a field to indicate an upgrade should be performed after the specified time even if no changes have been made to the KThreesControlPlane
+              description: UpgradeAfter is a field to indicate an upgrade should be performed after the specified time even if no changes have been made to the KZerosControlPlane
               format: date-time
               type: string
             version:
@@ -253,14 +253,14 @@ spec:
               type: string
           required:
           - infrastructureTemplate
-          - kthreesConfigSpec
+          - kzerosConfigSpec
           - version
           type: object
         status:
-          description: KThreesControlPlaneStatus defines the observed state of KThreesControlPlane
+          description: KZerosControlPlaneStatus defines the observed state of KZerosControlPlane
           properties:
             conditions:
-              description: Conditions defines current service state of the KThreesControlPlane.
+              description: Conditions defines current service state of the KZerosControlPlane.
               items:
                 description: Condition defines an observation of a Cluster API resource operational state.
                 properties:
@@ -302,7 +302,7 @@ spec:
               format: int64
               type: integer
             ready:
-              description: Ready denotes that the KThreesControlPlane API Server is ready to receive requests.
+              description: Ready denotes that the KZerosControlPlane API Server is ready to receive requests.
               type: boolean
             readyReplicas:
               description: Total number of fully running and ready control plane machines.
@@ -340,8 +340,8 @@ status:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: capi-k3s-control-plane-leader-election-role
-  namespace: capi-k3s-control-plane-system
+  name: capi-k0s-control-plane-leader-election-role
+  namespace: capi-k0s-control-plane-system
 rules:
 - apiGroups:
   - ""
@@ -374,7 +374,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   creationTimestamp: null
-  name: capi-k3s-control-plane-manager-role
+  name: capi-k0s-control-plane-manager-role
 rules:
 - apiGroups:
   - bootstrap.cluster.x-k8s.io
@@ -437,7 +437,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: capi-k3s-control-plane-proxy-role
+  name: capi-k0s-control-plane-proxy-role
 rules:
 - apiGroups:
   - authentication.k8s.io
@@ -455,7 +455,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
-  name: capi-k3s-control-plane-metrics-reader
+  name: capi-k0s-control-plane-metrics-reader
 rules:
 - nonResourceURLs:
   - /metrics
@@ -465,50 +465,50 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: capi-k3s-control-plane-leader-election-rolebinding
-  namespace: capi-k3s-control-plane-system
+  name: capi-k0s-control-plane-leader-election-rolebinding
+  namespace: capi-k0s-control-plane-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: capi-k3s-control-plane-leader-election-role
+  name: capi-k0s-control-plane-leader-election-role
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: capi-k3s-control-plane-system
+  namespace: capi-k0s-control-plane-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: capi-k3s-control-plane-manager-rolebinding
+  name: capi-k0s-control-plane-manager-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: capi-k3s-control-plane-manager-role
+  name: capi-k0s-control-plane-manager-role
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: capi-k3s-control-plane-system
+  namespace: capi-k0s-control-plane-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: capi-k3s-control-plane-proxy-rolebinding
+  name: capi-k0s-control-plane-proxy-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: capi-k3s-control-plane-proxy-role
+  name: capi-k0s-control-plane-proxy-role
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: capi-k3s-control-plane-system
+  namespace: capi-k0s-control-plane-system
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
     control-plane: controller-manager
-  name: capi-k3s-control-plane-controller-manager-metrics-service
-  namespace: capi-k3s-control-plane-system
+  name: capi-k0s-control-plane-controller-manager-metrics-service
+  namespace: capi-k0s-control-plane-system
 spec:
   ports:
   - name: https
@@ -522,8 +522,8 @@ kind: Deployment
 metadata:
   labels:
     control-plane: controller-manager
-  name: capi-k3s-control-plane-controller-manager
-  namespace: capi-k3s-control-plane-system
+  name: capi-k0s-control-plane-controller-manager
+  namespace: capi-k0s-control-plane-system
 spec:
   replicas: 1
   selector:
@@ -550,7 +550,7 @@ spec:
         - --enable-leader-election
         command:
         - /manager
-        image: ghcr.io/zawachte-msft/cluster-api-k3s/controlplane-controller:v0.1.2
+        image: ghcr.io/zawachte-msft/cluster-api-k0s/controlplane-controller:v0.1.2
         name: manager
         resources:
           limits:

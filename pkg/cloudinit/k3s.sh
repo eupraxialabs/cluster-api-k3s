@@ -20,28 +20,28 @@ set -e
 #     enforce that K3S_TOKEN or K3S_CLUSTER_SECRET is also set.
 #
 #   - INSTALL_K3S_SKIP_DOWNLOAD
-#     If set to true will not download k3s hash or binary.
+#     If set to true will not download k0s hash or binary.
 #
 #   - INSTALL_K3S_SYMLINK
 #     If set to 'skip' will not create symlinks, 'force' will overwrite,
 #     default will symlink if command does not exist in path.
 #
 #   - INSTALL_K3S_SKIP_ENABLE
-#     If set to true will not enable or start k3s service.
+#     If set to true will not enable or start k0s service.
 #
 #   - INSTALL_K3S_SKIP_START
-#     If set to true will not start k3s service.
+#     If set to true will not start k0s service.
 #
 #   - INSTALL_K3S_VERSION
-#     Version of k3s to download from github. Will attempt to download from the
+#     Version of k0s to download from github. Will attempt to download from the
 #     stable channel if not specified.
 #
 #   - INSTALL_K3S_COMMIT
-#     Commit of k3s to download from temporary cloud storage.
+#     Commit of k0s to download from temporary cloud storage.
 #     * (for developer & QA use)
 #
 #   - INSTALL_K3S_BIN_DIR
-#     Directory to install k3s binary, links, and uninstall script to, or use
+#     Directory to install k0s binary, links, and uninstall script to, or use
 #     /usr/local/bin as the default
 #
 #   - INSTALL_K3S_BIN_DIR_READ_ONLY
@@ -53,7 +53,7 @@ set -e
 #     /etc/systemd/system as the default
 #
 #   - INSTALL_K3S_EXEC or script arguments
-#     Command with flags to use for launching k3s in the systemd service, if
+#     Command with flags to use for launching k0s in the systemd service, if
 #     the command is not specified will default to "agent" if K3S_URL is set
 #     or "server" if not. The final systemd command resolves to a combination
 #     of EXEC and script args ($@).
@@ -66,29 +66,29 @@ set -e
 #       curl ... | sh -s - --disable=traefik
 #
 #   - INSTALL_K3S_NAME
-#     Name of systemd service to create, will default from the k3s exec command
-#     if not specified. If specified the name will be prefixed with 'k3s-'.
+#     Name of systemd service to create, will default from the k0s exec command
+#     if not specified. If specified the name will be prefixed with 'k0s-'.
 #
 #   - INSTALL_K3S_TYPE
-#     Type of systemd service to create, will default from the k3s exec command
+#     Type of systemd service to create, will default from the k0s exec command
 #     if not specified.
 #
 #   - INSTALL_K3S_SELINUX_WARN
-#     If set to true will continue if k3s-selinux policy is not found.
+#     If set to true will continue if k0s-selinux policy is not found.
 #
 #   - INSTALL_K3S_SKIP_SELINUX_RPM
-#     If set to true will skip automatic installation of the k3s RPM.
+#     If set to true will skip automatic installation of the k0s RPM.
 #
 #   - INSTALL_K3S_CHANNEL_URL
-#     Channel URL for fetching k3s download URL.
-#     Defaults to 'https://update.k3s.io/v1-release/channels'.
+#     Channel URL for fetching k0s download URL.
+#     Defaults to 'https://update.k0s.io/v1-release/channels'.
 #
 #   - INSTALL_K3S_CHANNEL
-#     Channel to use for fetching k3s download URL.
+#     Channel to use for fetching k0s download URL.
 #     Defaults to 'stable'.
 
-GITHUB_URL=https://github.com/rancher/k3s/releases
-STORAGE_URL=https://storage.googleapis.com/k3s-ci-builds
+GITHUB_URL=https://github.com/rancher/k0s/releases
+STORAGE_URL=https://storage.googleapis.com/k0s-ci-builds
 DOWNLOADER=
 
 # --- helper functions for logs ---
@@ -116,7 +116,7 @@ verify_system() {
         HAS_SYSTEMD=true
         return
     fi
-    fatal 'Can not find systemd or openrc to use as a process supervisor for k3s'
+    fatal 'Can not find systemd or openrc to use as a process supervisor for k0s'
 }
 
 # --- add quotes to command arguments ---
@@ -145,7 +145,7 @@ escape_dq() {
 }
 
 # --- ensures $K3S_URL is empty or begins with https://, exiting fatally otherwise ---
-verify_k3s_url() {
+verify_k0s_url() {
     case "${K3S_URL}" in
         "")
             ;;
@@ -167,7 +167,7 @@ setup_env() {
                 CMD_K3S=server
             else
                 if [ -z "${K3S_TOKEN}" ] && [ -z "${K3S_TOKEN_FILE}" ] && [ -z "${K3S_CLUSTER_SECRET}" ]; then
-                    fatal "Defaulted k3s exec command to 'agent' because K3S_URL is defined, but K3S_TOKEN, K3S_TOKEN_FILE or K3S_CLUSTER_SECRET is not defined."
+                    fatal "Defaulted k0s exec command to 'agent' because K3S_URL is defined, but K3S_TOKEN, K3S_TOKEN_FILE or K3S_CLUSTER_SECRET is not defined."
                 fi
                 CMD_K3S=agent
             fi
@@ -179,18 +179,18 @@ setup_env() {
         ;;
     esac
 
-    verify_k3s_url
+    verify_k0s_url
 
     CMD_K3S_EXEC="${CMD_K3S}$(quote_indent "$@")"
 
     # --- use systemd name if defined or create default ---
     if [ -n "${INSTALL_K3S_NAME}" ]; then
-        SYSTEM_NAME=k3s-${INSTALL_K3S_NAME}
+        SYSTEM_NAME=k0s-${INSTALL_K3S_NAME}
     else
         if [ "${CMD_K3S}" = server ]; then
-            SYSTEM_NAME=k3s
+            SYSTEM_NAME=k0s
         else
-            SYSTEM_NAME=k3s-${CMD_K3S}
+            SYSTEM_NAME=k0s-${CMD_K3S}
         fi
     fi
 
@@ -226,7 +226,7 @@ setup_env() {
     else
         # --- use /usr/local/bin if root can write to it, otherwise use /opt/bin if it exists
         BIN_DIR=/usr/local/bin
-        if ! $SUDO sh -c "touch ${BIN_DIR}/k3s-ro-test && rm -rf ${BIN_DIR}/k3s-ro-test"; then
+        if ! $SUDO sh -c "touch ${BIN_DIR}/k0s-ro-test && rm -rf ${BIN_DIR}/k0s-ro-test"; then
             if [ -d /opt/bin ]; then
                 BIN_DIR=/opt/bin
             fi
@@ -243,19 +243,19 @@ setup_env() {
     # --- set related files from system name ---
     SERVICE_K3S=${SYSTEM_NAME}.service
     UNINSTALL_K3S_SH=${UNINSTALL_K3S_SH:-${BIN_DIR}/${SYSTEM_NAME}-uninstall.sh}
-    KILLALL_K3S_SH=${KILLALL_K3S_SH:-${BIN_DIR}/k3s-killall.sh}
+    KILLALL_K3S_SH=${KILLALL_K3S_SH:-${BIN_DIR}/k0s-killall.sh}
 
     # --- use service or environment location depending on systemd/openrc ---
     if [ "${HAS_SYSTEMD}" = true ]; then
         FILE_K3S_SERVICE=${SYSTEMD_DIR}/${SERVICE_K3S}
         FILE_K3S_ENV=${SYSTEMD_DIR}/${SERVICE_K3S}.env
     elif [ "${HAS_OPENRC}" = true ]; then
-        $SUDO mkdir -p /etc/rancher/k3s
+        $SUDO mkdir -p /etc/rancher/k0s
         FILE_K3S_SERVICE=/etc/init.d/${SYSTEM_NAME}
-        FILE_K3S_ENV=/etc/rancher/k3s/${SYSTEM_NAME}.env
+        FILE_K3S_ENV=/etc/rancher/k0s/${SYSTEM_NAME}.env
     fi
 
-    # --- get hash of config & exec for currently installed k3s ---
+    # --- get hash of config & exec for currently installed k0s ---
     PRE_INSTALL_HASHES=$(get_installed_hashes)
 
     # --- if bin directory is read only skip download ---
@@ -264,7 +264,7 @@ setup_env() {
     fi
 
     # --- setup channel values
-    INSTALL_K3S_CHANNEL_URL=${INSTALL_K3S_CHANNEL_URL:-'https://update.k3s.io/v1-release/channels'}
+    INSTALL_K3S_CHANNEL_URL=${INSTALL_K3S_CHANNEL_URL:-'https://update.k0s.io/v1-release/channels'}
     INSTALL_K3S_CHANNEL=${INSTALL_K3S_CHANNEL:-'stable'}
 }
 
@@ -275,10 +275,10 @@ can_skip_download() {
     fi
 }
 
-# --- verify an executabe k3s binary is installed ---
-verify_k3s_is_executable() {
-    if [ ! -x ${BIN_DIR}/k3s ]; then
-        fatal "Executable k3s binary not found at ${BIN_DIR}/k3s"
+# --- verify an executabe k0s binary is installed ---
+verify_k0s_is_executable() {
+    if [ ! -x ${BIN_DIR}/k0s ]; then
+        fatal "Executable k0s binary not found at ${BIN_DIR}/k0s"
     fi
 }
 
@@ -325,9 +325,9 @@ verify_downloader() {
 
 # --- create tempory directory and cleanup when done ---
 setup_tmp() {
-    TMP_DIR=$(mktemp -d -t k3s-install.XXXXXXXXXX)
-    TMP_HASH=${TMP_DIR}/k3s.hash
-    TMP_BIN=${TMP_DIR}/k3s.bin
+    TMP_DIR=$(mktemp -d -t k0s-install.XXXXXXXXXX)
+    TMP_HASH=${TMP_DIR}/k0s.hash
+    TMP_BIN=${TMP_DIR}/k0s.bin
     cleanup() {
         code=$?
         set +e
@@ -338,7 +338,7 @@ setup_tmp() {
     trap cleanup INT EXIT
 }
 
-# --- use desired k3s version if defined or find version from channel ---
+# --- use desired k0s version if defined or find version from channel ---
 get_release_version() {
     if [ -n "${INSTALL_K3S_COMMIT}" ]; then
         VERSION_K3S="commit ${INSTALL_K3S_COMMIT}"
@@ -385,20 +385,20 @@ download() {
 # --- download hash from github url ---
 download_hash() {
     if [ -n "${INSTALL_K3S_COMMIT}" ]; then
-        HASH_URL=${STORAGE_URL}/k3s${SUFFIX}-${INSTALL_K3S_COMMIT}.sha256sum
+        HASH_URL=${STORAGE_URL}/k0s${SUFFIX}-${INSTALL_K3S_COMMIT}.sha256sum
     else
         HASH_URL=${GITHUB_URL}/download/${VERSION_K3S}/sha256sum-${ARCH}.txt
     fi
     info "Downloading hash ${HASH_URL}"
     download ${TMP_HASH} ${HASH_URL}
-    HASH_EXPECTED=$(grep " k3s${SUFFIX}$" ${TMP_HASH})
+    HASH_EXPECTED=$(grep " k0s${SUFFIX}$" ${TMP_HASH})
     HASH_EXPECTED=${HASH_EXPECTED%%[[:blank:]]*}
 }
 
 # --- check hash against installed version ---
 installed_hash_matches() {
-    if [ -x ${BIN_DIR}/k3s ]; then
-        HASH_INSTALLED=$(sha256sum ${BIN_DIR}/k3s)
+    if [ -x ${BIN_DIR}/k0s ]; then
+        HASH_INSTALLED=$(sha256sum ${BIN_DIR}/k0s)
         HASH_INSTALLED=${HASH_INSTALLED%%[[:blank:]]*}
         if [ "${HASH_EXPECTED}" = "${HASH_INSTALLED}" ]; then
             return
@@ -410,9 +410,9 @@ installed_hash_matches() {
 # --- download binary from github url ---
 download_binary() {
     if [ -n "${INSTALL_K3S_COMMIT}" ]; then
-        BIN_URL=${STORAGE_URL}/k3s${SUFFIX}-${INSTALL_K3S_COMMIT}
+        BIN_URL=${STORAGE_URL}/k0s${SUFFIX}-${INSTALL_K3S_COMMIT}
     else
-        BIN_URL=${GITHUB_URL}/download/${VERSION_K3S}/k3s${SUFFIX}
+        BIN_URL=${GITHUB_URL}/download/${VERSION_K3S}/k0s${SUFFIX}
     fi
     info "Downloading binary ${BIN_URL}"
     download ${TMP_BIN} ${BIN_URL}
@@ -431,9 +431,9 @@ verify_binary() {
 # --- setup permissions and move binary to system directory ---
 setup_binary() {
     chmod 755 ${TMP_BIN}
-    info "Installing k3s to ${BIN_DIR}/k3s"
+    info "Installing k0s to ${BIN_DIR}/k0s"
     $SUDO chown root:root ${TMP_BIN}
-    $SUDO mv -f ${TMP_BIN} ${BIN_DIR}/k3s
+    $SUDO mv -f ${TMP_BIN} ${BIN_DIR}/k0s
 }
 
 # --- setup selinux policy ---
@@ -457,7 +457,7 @@ setup_selinux() {
 
     policy_hint="please install:
     yum install -y container-selinux selinux-policy-base
-    yum install -y https://${rpm_site}/k3s/${rpm_channel}/common/centos/7/noarch/k3s-selinux-0.2-1.el7_8.noarch.rpm
+    yum install -y https://${rpm_site}/k0s/${rpm_channel}/common/centos/7/noarch/k0s-selinux-0.2-1.el7_8.noarch.rpm
 "
     policy_error=fatal
     if [ "$INSTALL_K3S_SELINUX_WARN" = true ] || grep -q 'ID=flatcar' /etc/os-release; then
@@ -470,18 +470,18 @@ setup_selinux() {
         install_selinux_rpm ${rpm_site} ${rpm_channel}
     fi
 
-    if ! $SUDO chcon -u system_u -r object_r -t container_runtime_exec_t ${BIN_DIR}/k3s >/dev/null 2>&1; then
+    if ! $SUDO chcon -u system_u -r object_r -t container_runtime_exec_t ${BIN_DIR}/k0s >/dev/null 2>&1; then
         if $SUDO grep '^\s*SELINUX=enforcing' /etc/selinux/config >/dev/null 2>&1; then
-            $policy_error "Failed to apply container_runtime_exec_t to ${BIN_DIR}/k3s, ${policy_hint}"
+            $policy_error "Failed to apply container_runtime_exec_t to ${BIN_DIR}/k0s, ${policy_hint}"
         fi
     else
-        if [ ! -f /usr/share/selinux/packages/k3s.pp ]; then
-            $policy_error "Failed to find the k3s-selinux policy, ${policy_hint}"
+        if [ ! -f /usr/share/selinux/packages/k0s.pp ]; then
+            $policy_error "Failed to find the k0s-selinux policy, ${policy_hint}"
         fi
     fi
 }
 
-# --- if on an el7/el8 system, install k3s-selinux
+# --- if on an el7/el8 system, install k0s-selinux
 install_selinux_rpm() {
     if [ -r /etc/redhat-release ] || [ -r /etc/centos-release ] || [ -r /etc/oracle-release ]; then
         dist_version="$(. /etc/os-release && echo "$VERSION_ID")"
@@ -500,25 +500,25 @@ install_selinux_rpm() {
                     ;;
             esac
         fi
-        $SUDO rm -f /etc/yum.repos.d/rancher-k3s-common*.repo
-        $SUDO tee /etc/yum.repos.d/rancher-k3s-common.repo >/dev/null << EOF
-[rancher-k3s-common-${2}]
-name=Rancher K3s Common (${2})
-baseurl=https://${1}/k3s/${2}/common/centos/${maj_ver}/noarch
+        $SUDO rm -f /etc/yum.repos.d/rancher-k0s-common*.repo
+        $SUDO tee /etc/yum.repos.d/rancher-k0s-common.repo >/dev/null << EOF
+[rancher-k0s-common-${2}]
+name=Rancher K0s Common (${2})
+baseurl=https://${1}/k0s/${2}/common/centos/${maj_ver}/noarch
 enabled=1
 gpgcheck=1
 gpgkey=https://${1}/public.key
 EOF
-        $SUDO yum -y install "k3s-selinux"
+        $SUDO yum -y install "k0s-selinux"
     fi
     return
 }
 
-# --- download and verify k3s ---
+# --- download and verify k0s ---
 download_and_verify() {
     if can_skip_download; then
-       info 'Skipping k3s download and verify'
-       verify_k3s_is_executable
+       info 'Skipping k0s download and verify'
+       verify_k0s_is_executable
        return
     fi
 
@@ -529,7 +529,7 @@ download_and_verify() {
     download_hash
 
     if installed_hash_matches; then
-        info 'Skipping binary downloaded, installed k3s matches hash'
+        info 'Skipping binary downloaded, installed k0s matches hash'
         return
     fi
 
@@ -547,13 +547,13 @@ create_symlinks() {
         if [ ! -e ${BIN_DIR}/${cmd} ] || [ "${INSTALL_K3S_SYMLINK}" = force ]; then
             which_cmd=$(which ${cmd} 2>/dev/null || true)
             if [ -z "${which_cmd}" ] || [ "${INSTALL_K3S_SYMLINK}" = force ]; then
-                info "Creating ${BIN_DIR}/${cmd} symlink to k3s"
-                $SUDO ln -sf k3s ${BIN_DIR}/${cmd}
+                info "Creating ${BIN_DIR}/${cmd} symlink to k0s"
+                $SUDO ln -sf k0s ${BIN_DIR}/${cmd}
             else
-                info "Skipping ${BIN_DIR}/${cmd} symlink to k3s, command exists in PATH at ${which_cmd}"
+                info "Skipping ${BIN_DIR}/${cmd} symlink to k0s, command exists in PATH at ${which_cmd}"
             fi
         else
-            info "Skipping ${BIN_DIR}/${cmd} symlink to k3s, already exists"
+            info "Skipping ${BIN_DIR}/${cmd} symlink to k0s, already exists"
         fi
     done
 }
@@ -566,17 +566,17 @@ create_killall() {
 #!/bin/sh
 [ $(id -u) -eq 0 ] || exec sudo $0 $@
 
-for bin in /var/lib/rancher/k3s/data/**/bin/; do
+for bin in /var/lib/rancher/k0s/data/**/bin/; do
     [ -d $bin ] && export PATH=$PATH:$bin:$bin/aux
 done
 
 set -x
 
-for service in /etc/systemd/system/k3s*.service; do
+for service in /etc/systemd/system/k0s*.service; do
     [ -s $service ] && systemctl stop $(basename $service)
 done
 
-for service in /etc/init.d/k3s*; do
+for service in /etc/init.d/k0s*; do
     [ -x $service ] && $service stop
 done
 
@@ -605,7 +605,7 @@ killtree() {
 }
 
 getshims() {
-    ps -e -o pid= -o args= | sed -e 's/^ *//; s/\s\s*/\t/;' | grep -w 'k3s/data/[^/]*/bin/containerd-shim' | cut -f1
+    ps -e -o pid= -o args= | sed -e 's/^ *//; s/\s\s*/\t/;' | grep -w 'k0s/data/[^/]*/bin/containerd-shim' | cut -f1
 }
 
 killtree $({ set +x; } 2>/dev/null; getshims; set -x)
@@ -614,8 +614,8 @@ do_unmount_and_remove() {
     awk -v path="$1" '$2 ~ ("^" path) { print $2 }' /proc/self/mounts | sort -r | xargs -r -t -n 1 sh -c 'umount "$0" && rm -rf "$0"'
 }
 
-do_unmount_and_remove '/run/k3s'
-do_unmount_and_remove '/var/lib/rancher/k3s'
+do_unmount_and_remove '/run/k0s'
+do_unmount_and_remove '/var/lib/rancher/k0s'
 do_unmount_and_remove '/var/lib/kubelet/pods'
 do_unmount_and_remove '/run/netns/cni-'
 
@@ -664,8 +664,8 @@ remove_uninstall() {
 }
 trap remove_uninstall EXIT
 
-if (ls ${SYSTEMD_DIR}/k3s*.service || ls /etc/init.d/k3s*) >/dev/null 2>&1; then
-    set +x; echo 'Additional k3s services installed, skipping uninstall of k3s'; set -x
+if (ls ${SYSTEMD_DIR}/k0s*.service || ls /etc/init.d/k0s*) >/dev/null 2>&1; then
+    set +x; echo 'Additional k0s services installed, skipping uninstall of k0s'; set -x
     exit
 fi
 
@@ -675,17 +675,17 @@ for cmd in kubectl crictl ctr; do
     fi
 done
 
-rm -rf /etc/rancher/k3s
-rm -rf /run/k3s
+rm -rf /etc/rancher/k0s
+rm -rf /run/k0s
 rm -rf /run/flannel
-rm -rf /var/lib/rancher/k3s
+rm -rf /var/lib/rancher/k0s
 rm -rf /var/lib/kubelet
-rm -f ${BIN_DIR}/k3s
+rm -f ${BIN_DIR}/k0s
 rm -f ${KILLALL_K3S_SH}
 
 if type yum >/dev/null 2>&1; then
-    yum remove -y k3s-selinux
-    rm -f /etc/yum.repos.d/rancher-k3s-common*.repo
+    yum remove -y k0s-selinux
+    rm -f /etc/yum.repos.d/rancher-k0s-common*.repo
 fi
 EOF
     $SUDO chmod 755 ${UNINSTALL_K3S_SH}
@@ -699,7 +699,7 @@ systemd_disable() {
     $SUDO systemctl disable ${SYSTEM_NAME} >/dev/null 2>&1 || true
 }
 
-# --- capture current env and create file containing k3s_ variables ---
+# --- capture current env and create file containing k0s_ variables ---
 create_env_file() {
     info "env: Creating environment file ${FILE_K3S_ENV}"
     UMASK=$(umask)
@@ -715,7 +715,7 @@ create_systemd_service_file() {
     $SUDO tee ${FILE_K3S_SERVICE} >/dev/null << EOF
 [Unit]
 Description=Lightweight Kubernetes
-Documentation=https://k3s.io
+Documentation=https://k0s.io
 Wants=network-online.target
 After=network-online.target
 
@@ -738,7 +738,7 @@ Restart=always
 RestartSec=5s
 ExecStartPre=-/sbin/modprobe br_netfilter
 ExecStartPre=-/sbin/modprobe overlay
-ExecStart=${BIN_DIR}/k3s \\
+ExecStart=${BIN_DIR}/k0s \\
     ${CMD_K3S_EXEC}
 
 EOF
@@ -758,12 +758,12 @@ depend() {
 }
 
 start_pre() {
-    rm -f /tmp/k3s.*
+    rm -f /tmp/k0s.*
 }
 
 supervisor=supervise-daemon
 name=${SYSTEM_NAME}
-command="${BIN_DIR}/k3s"
+command="${BIN_DIR}/k0s"
 command_args="$(escape_dq "${CMD_K3S_EXEC}")
     >>${LOG_FILE} 2>&1"
 
@@ -797,9 +797,9 @@ create_service_file() {
     return 0
 }
 
-# --- get hashes of the current k3s bin and service files
+# --- get hashes of the current k0s bin and service files
 get_installed_hashes() {
-    $SUDO sha256sum ${BIN_DIR}/k3s ${FILE_K3S_SERVICE} ${FILE_K3S_ENV} 2>&1 || true
+    $SUDO sha256sum ${BIN_DIR}/k0s ${FILE_K3S_SERVICE} ${FILE_K3S_ENV} 2>&1 || true
 }
 
 # --- enable and start systemd service ---

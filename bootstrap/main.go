@@ -27,8 +27,8 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	bootstrapv1alpha3 "github.com/zawachte-msft/cluster-api-k3s/bootstrap/api/v1alpha3"
-	"github.com/zawachte-msft/cluster-api-k3s/bootstrap/controllers"
+	bootstrapv1alpha3 "../../cluster-api-k0s/bootstrap/api/v1alpha3"
+	"../../cluster-api-k0s/bootstrap/controllers"
 	clusterv1alpha3 "sigs.k8s.io/cluster-api/api/v1alpha3"
 	expv1alpha3 "sigs.k8s.io/cluster-api/exp/api/v1alpha3"
 	// +kubebuilder:scaffold:imports
@@ -76,12 +76,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&controllers.KThreesConfigReconciler{
+	if err = (&controllers.KZerosConfigReconciler{
 		Client: mgr.GetClient(),
-		Log:    ctrl.Log.WithName("controllers").WithName("KThreesConfig"),
+		Log:    ctrl.Log.WithName("controllers").WithName("KZerosConfig"),
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create controller", "controller", "KThreesConfig")
+		setupLog.Error(err, "unable to create controller", "controller", "KZerosConfig")
 		os.Exit(1)
 	}
 	// +kubebuilder:scaffold:builder

@@ -6,7 +6,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.3.0
   creationTimestamp: null
-  name: kthreescontrolplanes.controlplane.cluster.x-k8s.io
+  name: kzeroscontrolplanes.controlplane.cluster.x-k8s.io
 spec:
   additionalPrinterColumns:
   - JSONPath: .status.initialized
@@ -15,7 +15,7 @@ spec:
     name: Initialized
     type: boolean
   - JSONPath: .status.ready
-    description: KThreesControlPlane API Server is ready to receive requests
+    description: KZerosControlPlane API Server is ready to receive requests
     name: API Server Available
     type: boolean
   - JSONPath: .spec.version
@@ -42,10 +42,10 @@ spec:
     type: integer
   group: controlplane.cluster.x-k8s.io
   names:
-    kind: KThreesControlPlane
-    listKind: KThreesControlPlaneList
-    plural: kthreescontrolplanes
-    singular: kthreescontrolplane
+    kind: KZerosControlPlane
+    listKind: KZerosControlPlaneList
+    plural: kzeroscontrolplanes
+    singular: kzeroscontrolplane
   scope: Namespaced
   subresources:
     scale:
@@ -55,7 +55,7 @@ spec:
     status: {}
   validation:
     openAPIV3Schema:
-      description: KThreesControlPlane is the Schema for the kthreescontrolplanes
+      description: KZerosControlPlane is the Schema for the kzeroscontrolplanes
         API
       properties:
         apiVersion:
@@ -71,7 +71,7 @@ spec:
         metadata:
           type: object
         spec:
-          description: KThreesControlPlaneSpec defines the desired state of KThreesControlPlane
+          description: KZerosControlPlaneSpec defines the desired state of KZerosControlPlane
           properties:
             infrastructureTemplate:
               description: InfrastructureTemplate is a required reference to a custom
@@ -110,8 +110,8 @@ spec:
                   description: 'UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids'
                   type: string
               type: object
-            kthreesConfigSpec:
-              description: KThreesConfigSpec is a KThreesConfigSpec to use for initializing
+            kzerosConfigSpec:
+              description: KZerosConfigSpec is a KZerosConfigSpec to use for initializing
                 and joining machines to the control plane.
               properties:
                 agentConfig:
@@ -141,7 +141,7 @@ spec:
                     privateRegistry:
                       description: 'TODO: take in a object or secret and write to
                         file. this is not useful PrivateRegistry  registry configuration
-                        file (default: "/etc/rancher/k3s/registries.yaml")'
+                        file (default: "/etc/rancher/k0s/registries.yaml")'
                       type: string
                   type: object
                 files:
@@ -167,7 +167,7 @@ spec:
                                   for this value.
                                 type: string
                               name:
-                                description: Name of the secret in the KThreesBootstrapConfig's
+                                description: Name of the secret in the KZerosBootstrapConfig's
                                   namespace to use.
                                 type: string
                             required:
@@ -200,15 +200,15 @@ spec:
                     - path
                     type: object
                   type: array
-                postK3sCommands:
-                  description: PostK3sCommands specifies extra commands to run after
-                    k3s setup runs
+                postK0sCommands:
+                  description: PostK0sCommands specifies extra commands to run after
+                    k0s setup runs
                   items:
                     type: string
                   type: array
-                preK3sCommands:
-                  description: PreK3sCommands specifies extra commands to run before
-                    k3s setup runs
+                preK0sCommands:
+                  description: PreK0sCommands specifies extra commands to run before
+                    k0s setup runs
                   items:
                     type: string
                   type: array
@@ -226,7 +226,7 @@ spec:
                         0)'
                       type: string
                     bindAddress:
-                      description: 'BindAddress k3s bind address (default: 0.0.0.0)'
+                      description: 'BindAddress k0s bind address (default: 0.0.0.0)'
                       type: string
                     clusterCidr:
                       description: 'ClusterCidr  Network CIDR to use for pod IPs (default:
@@ -241,7 +241,7 @@ spec:
                       type: string
                     disableComponents:
                       description: DisableComponents  specifies extra commands to
-                        run before k3s setup runs
+                        run before k0s setup runs
                       items:
                         type: string
                       type: array
@@ -272,7 +272,7 @@ spec:
                       type: array
                   type: object
                 version:
-                  description: Version specifies the k3s version
+                  description: Version specifies the k0s version
                   type: string
               type: object
             nodeDrainTimeout:
@@ -291,7 +291,7 @@ spec:
             upgradeAfter:
               description: UpgradeAfter is a field to indicate an upgrade should be
                 performed after the specified time even if no changes have been made
-                to the KThreesControlPlane
+                to the KZerosControlPlane
               format: date-time
               type: string
             version:
@@ -299,14 +299,14 @@ spec:
               type: string
           required:
           - infrastructureTemplate
-          - kthreesConfigSpec
+          - kzerosConfigSpec
           - version
           type: object
         status:
-          description: KThreesControlPlaneStatus defines the observed state of KThreesControlPlane
+          description: KZerosControlPlaneStatus defines the observed state of KZerosControlPlane
           properties:
             conditions:
-              description: Conditions defines current service state of the KThreesControlPlane.
+              description: Conditions defines current service state of the KZerosControlPlane.
               items:
                 description: Condition defines an observation of a Cluster API resource
                   operational state.
@@ -367,7 +367,7 @@ spec:
               format: int64
               type: integer
             ready:
-              description: Ready denotes that the KThreesControlPlane API Server is
+              description: Ready denotes that the KZerosControlPlane API Server is
                 ready to receive requests.
               type: boolean
             readyReplicas:

@@ -1,13 +1,13 @@
-# permissions for end users to view kthreescontrolplanes.
+# permissions for end users to view kzeroscontrolplanes.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: kthreescontrolplane-viewer-role
+  name: kzeroscontrolplane-viewer-role
 rules:
 - apiGroups:
   - controlplane.cluster.x-k8s.io
   resources:
-  - kthreescontrolplanes
+  - kzeroscontrolplanes
   verbs:
   - get
   - list
@@ -15,6 +15,6 @@ rules:
 - apiGroups:
   - controlplane.cluster.x-k8s.io
   resources:
-  - kthreescontrolplanes/status
+  - kzeroscontrolplanes/status
   verbs:
   - get

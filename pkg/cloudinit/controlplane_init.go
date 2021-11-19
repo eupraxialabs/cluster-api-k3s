@@ -19,16 +19,17 @@ package cloudinit
 import (
 	"fmt"
 
-	"github.com/zawachte-msft/cluster-api-k3s/pkg/secret"
+	"github.com/eupraxialabs/cluster-api-k0s/pkg/secret"
 )
 
+// rewrite to pass in version of k0s
 const (
 	controlPlaneCloudInit = `{{.Header}}
 {{template "files" .WriteFiles}}
 runcmd:
-{{- template "commands" .PreK3sCommands }}
-  - 'curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=%s sh -s - server'
-{{- template "commands" .PostK3sCommands }}
+{{- template "commands" .PreK0sCommands }}
+  - 'curl -sSLf https://get.k0s.sh | sudo K0S_VERSION=v1.22.3+k0s.0 sh'
+{{- template "commands" .PostK0sCommands }}
 `
 )
 
@@ -45,7 +46,7 @@ func NewInitControlPlane(input *ControlPlaneInput) ([]byte, error) {
 	input.WriteFiles = append(input.WriteFiles, input.AdditionalFiles...)
 	input.WriteFiles = append(input.WriteFiles, input.ConfigFile)
 
-	controlPlaneCloudJoinWithVersion := fmt.Sprintf(controlPlaneCloudInit, input.K3sVersion)
+	controlPlaneCloudJoinWithVersion := fmt.Sprintf(controlPlaneCloudInit, input.K0sVersion)
 	userData, err := generate("InitControlplane", controlPlaneCloudJoinWithVersion, input)
 	if err != nil {
 		return nil, err

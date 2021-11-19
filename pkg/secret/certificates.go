@@ -30,7 +30,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	bootstrapv1 "github.com/zawachte-msft/cluster-api-k3s/bootstrap/api/v1alpha3"
+	bootstrapv1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
 	corev1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -43,7 +43,7 @@ import (
 const (
 	rootOwnerValue = "root:root"
 
-	DefaultCertificatesDir = "/var/lib/rancher/k3s/server/tls"
+	DefaultCertificatesDir = "/var/lib/rancher/k0s/server/tls"
 )
 
 var (

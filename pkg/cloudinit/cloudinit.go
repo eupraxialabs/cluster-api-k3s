@@ -22,7 +22,7 @@ import (
 	"text/template"
 
 	"github.com/pkg/errors"
-	bootstrapv1 "github.com/zawachte-msft/cluster-api-k3s/bootstrap/api/v1alpha3"
+	bootstrapv1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
 )
 
 var (
@@ -38,9 +38,9 @@ func templateYAMLIndent(i int, input string) string {
 }
 
 const (
-	k3sScriptName        = "/usr/local/bin/k3s"
-	k3sScriptOwner       = "root"
-	k3sScriptPermissions = "0755"
+	k0sScriptName        = "/usr/local/bin/k0s"
+	k0sScriptOwner       = "root"
+	k0sScriptPermissions = "0755"
 	cloudConfigHeader    = `## template: jinja
 #cloud-config
 `
@@ -74,12 +74,12 @@ write_files:{{ range . }}
 // BaseUserData is shared across all the various types of files written to disk.
 type BaseUserData struct {
 	Header          string
-	PreK3sCommands  []string
-	PostK3sCommands []string
+	PreK0sCommands  []string
+	PostK0sCommands []string
 	AdditionalFiles []bootstrapv1.File
 	WriteFiles      []bootstrapv1.File
 	ConfigFile      bootstrapv1.File
-	K3sVersion      string
+	K0sVersion      string
 }
 
 func (input *BaseUserData) prepare() error {

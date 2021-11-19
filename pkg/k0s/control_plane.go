@@ -14,14 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package k3s
+package k0s
 
 import (
 	"context"
 
 	"github.com/go-logr/logr"
 	"github.com/pkg/errors"
-	"github.com/zawachte-msft/cluster-api-k3s/pkg/machinefilters"
+	"github.com/zawachte-msft/cluster-api-k0s/pkg/machinefilters"
 	corev1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -30,9 +30,9 @@ import (
 	"k8s.io/apiserver/pkg/storage/names"
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 
-	bootstrapv1 "github.com/zawachte-msft/cluster-api-k3s/bootstrap/api/v1alpha3"
+	bootstrapv1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
 
-	controlplanev1 "github.com/zawachte-msft/cluster-api-k3s/controlplane/api/v1alpha3"
+	controlplanev1 "github.com/zawachte-msft/cluster-api-k0s/controlplane/api/v1alpha3"
 	"sigs.k8s.io/cluster-api/controllers/external"
 
 	"sigs.k8s.io/cluster-api/util/patch"
@@ -43,7 +43,7 @@ import (
 // It should never need to connect to a service, that responsibility lies outside of this struct.
 // Going forward we should be trying to add more logic to here and reduce the amount of logic in the reconciler.
 type ControlPlane struct {
-	KCP                  *controlplanev1.KThreesControlPlane
+	KCP                  *controlplanev1.KZerosControlPlane
 	Cluster              *clusterv1.Cluster
 	Machines             FilterableMachineCollection
 	machinesPatchHelpers map[string]*patch.Helper
@@ -53,17 +53,17 @@ type ControlPlane struct {
 
 	// TODO: we should see if we can combine these with the Machine objects so we don't have all these separate lookups
 	// See discussion on https://github.com/kubernetes-sigs/cluster-api/pull/3405
-	kthreesConfigs map[string]*bootstrapv1.KThreesConfig
+	kzerosConfigs  map[string]*bootstrapv1.KZerosConfig
 	infraResources map[string]*unstructured.Unstructured
 }
 
 // NewControlPlane returns an instantiated ControlPlane.
-func NewControlPlane(ctx context.Context, client client.Client, cluster *clusterv1.Cluster, kcp *controlplanev1.KThreesControlPlane, ownedMachines FilterableMachineCollection) (*ControlPlane, error) {
+func NewControlPlane(ctx context.Context, client client.Client, cluster *clusterv1.Cluster, kcp *controlplanev1.KZerosControlPlane, ownedMachines FilterableMachineCollection) (*ControlPlane, error) {
 	infraObjects, err := getInfraResources(ctx, client, ownedMachines)
 	if err != nil {
 		return nil, err
 	}
-	kthreesConfigs, err := getKThreesConfigs(ctx, client, ownedMachines)
+	kzerosConfigs, err := getKZerosConfigs(ctx, client, ownedMachines)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func NewControlPlane(ctx context.Context, client client.Client, cluster *cluster
 		Cluster:              cluster,
 		Machines:             ownedMachines,
 		machinesPatchHelpers: patchHelpers,
-		kthreesConfigs:       kthreesConfigs,
+		kzerosConfigs:        kzerosConfigs,
 		infraResources:       infraObjects,
 		reconciliationTime:   metav1.Now(),
 	}, nil
@@ -100,21 +100,21 @@ func (c *ControlPlane) FailureDomains() clusterv1.FailureDomains {
 	return c.Cluster.Status.FailureDomains
 }
 
-// Version returns the KThreesControlPlane's version.
+// Version returns the KZerosControlPlane's version.
 func (c *ControlPlane) Version() *string {
 	return &c.KCP.Spec.Version
 }
 
-// InfrastructureTemplate returns the KThreesControlPlane's infrastructure template.
+// InfrastructureTemplate returns the KZerosControlPlane's infrastructure template.
 func (c *ControlPlane) InfrastructureTemplate() *corev1.ObjectReference {
 	return &c.KCP.Spec.InfrastructureTemplate
 }
 
-// AsOwnerReference returns an owner reference to the KThreesControlPlane.
+// AsOwnerReference returns an owner reference to the KZerosControlPlane.
 func (c *ControlPlane) AsOwnerReference() *metav1.OwnerReference {
 	return &metav1.OwnerReference{
 		APIVersion: controlplanev1.GroupVersion.String(),
-		Kind:       "KThreesControlPlane",
+		Kind:       "KZerosControlPlane",
 		Name:       c.KCP.Name,
 		UID:        c.KCP.UID,
 	}
@@ -168,29 +168,29 @@ func (c *ControlPlane) NextFailureDomainForScaleUp() *string {
 	return PickFewest(c.FailureDomains().FilterControlPlane(), c.UpToDateMachines())
 }
 
-// InitialControlPlaneConfig returns a new KThreesConfigSpec that is to be used for an initializing control plane.
-func (c *ControlPlane) InitialControlPlaneConfig() *bootstrapv1.KThreesConfigSpec {
-	bootstrapSpec := c.KCP.Spec.KThreesConfigSpec.DeepCopy()
+// InitialControlPlaneConfig returns a new KZerosConfigSpec that is to be used for an initializing control plane.
+func (c *ControlPlane) InitialControlPlaneConfig() *bootstrapv1.KZerosConfigSpec {
+	bootstrapSpec := c.KCP.Spec.KZerosConfigSpec.DeepCopy()
 	return bootstrapSpec
 }
 
-// JoinControlPlaneConfig returns a new KThreesConfigSpec that is to be used for joining control planes.
-func (c *ControlPlane) JoinControlPlaneConfig() *bootstrapv1.KThreesConfigSpec {
-	bootstrapSpec := c.KCP.Spec.KThreesConfigSpec.DeepCopy()
+// JoinControlPlaneConfig returns a new KZerosConfigSpec that is to be used for joining control planes.
+func (c *ControlPlane) JoinControlPlaneConfig() *bootstrapv1.KZerosConfigSpec {
+	bootstrapSpec := c.KCP.Spec.KZerosConfigSpec.DeepCopy()
 	return bootstrapSpec
 }
 
-// GenerateKThreesConfig generates a new kubeadm config for creating new control plane nodes.
-func (c *ControlPlane) GenerateKThreesConfig(spec *bootstrapv1.KThreesConfigSpec) *bootstrapv1.KThreesConfig {
+// GenerateKZerosConfig generates a new kubeadm config for creating new control plane nodes.
+func (c *ControlPlane) GenerateKZerosConfig(spec *bootstrapv1.KZerosConfigSpec) *bootstrapv1.KZerosConfig {
 	// Create an owner reference without a controller reference because the owning controller is the machine controller
 	owner := metav1.OwnerReference{
 		APIVersion: controlplanev1.GroupVersion.String(),
-		Kind:       "KThreesControlPlane",
+		Kind:       "KZerosControlPlane",
 		Name:       c.KCP.Name,
 		UID:        c.KCP.UID,
 	}
 
-	bootstrapConfig := &bootstrapv1.KThreesConfig{
+	bootstrapConfig := &bootstrapv1.KZerosConfig{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:            names.SimpleNameGenerator.GenerateName(c.KCP.Name + "-"),
 			Namespace:       c.KCP.Namespace,
@@ -218,7 +218,7 @@ func (c *ControlPlane) NewMachine(infraRef, bootstrapRef *corev1.ObjectReference
 			Namespace: c.KCP.Namespace,
 			Labels:    ControlPlaneLabelsForCluster(c.Cluster.Name),
 			OwnerReferences: []metav1.OwnerReference{
-				*metav1.NewControllerRef(c.KCP, controlplanev1.GroupVersion.WithKind("KThreesControlPlane")),
+				*metav1.NewControllerRef(c.KCP, controlplanev1.GroupVersion.WithKind("KZerosControlPlane")),
 			},
 		},
 		Spec: clusterv1.MachineSpec{
@@ -258,7 +258,7 @@ func (c *ControlPlane) MachinesNeedingRollout() FilterableMachineCollection {
 		// Machines that are scheduled for rollout (KCP.Spec.UpgradeAfter set, the UpgradeAfter deadline is expired, and the machine was created before the deadline).
 		machinefilters.ShouldRolloutAfter(&c.reconciliationTime, c.KCP.Spec.UpgradeAfter),
 		// Machines that do not match with KCP config.
-		machinefilters.Not(machinefilters.MatchesKCPConfiguration(c.infraResources, c.kthreesConfigs, c.KCP)),
+		machinefilters.Not(machinefilters.MatchesKCPConfiguration(c.infraResources, c.kzerosConfigs, c.KCP)),
 	)
 }
 
@@ -284,15 +284,15 @@ func getInfraResources(ctx context.Context, cl client.Client, machines Filterabl
 	return result, nil
 }
 
-// getKThreesConfigs fetches the kubeadm config for each machine in the collection and returns a map of machine.Name -> KThreesConfig.
-func getKThreesConfigs(ctx context.Context, cl client.Client, machines FilterableMachineCollection) (map[string]*bootstrapv1.KThreesConfig, error) {
-	result := map[string]*bootstrapv1.KThreesConfig{}
+// getKZerosConfigs fetches the kubeadm config for each machine in the collection and returns a map of machine.Name -> KZerosConfig.
+func getKZerosConfigs(ctx context.Context, cl client.Client, machines FilterableMachineCollection) (map[string]*bootstrapv1.KZerosConfig, error) {
+	result := map[string]*bootstrapv1.KZerosConfig{}
 	for _, m := range machines {
 		bootstrapRef := m.Spec.Bootstrap.ConfigRef
 		if bootstrapRef == nil {
 			continue
 		}
-		machineConfig := &bootstrapv1.KThreesConfig{}
+		machineConfig := &bootstrapv1.KZerosConfig{}
 		if err := cl.Get(ctx, client.ObjectKey{Name: bootstrapRef.Name, Namespace: m.Namespace}, machineConfig); err != nil {
 			if apierrors.IsNotFound(errors.Cause(err)) {
 				continue

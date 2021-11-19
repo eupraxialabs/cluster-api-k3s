@@ -17,27 +17,27 @@ limitations under the License.
 package v1alpha3
 
 import (
-	"github.com/zawachte-msft/cluster-api-k3s/pkg/errors"
+	"github.com/zawachte-msft/cluster-api-k0s/pkg/errors"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 
-	cabp3v1 "github.com/zawachte-msft/cluster-api-k3s/bootstrap/api/v1alpha3"
+	cabp3v1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
 )
 
 const (
-	KThreesControlPlaneFinalizer = "kthrees.controlplane.cluster.x-k8s.io"
+	KZerosControlPlaneFinalizer = "kzeros.controlplane.cluster.x-k8s.io"
 
-	// KThreesServerConfigurationAnnotation is a machine annotation that stores the json-marshalled string of KCP ClusterConfiguration.
+	// KZerosServerConfigurationAnnotation is a machine annotation that stores the json-marshalled string of KCP ClusterConfiguration.
 	// This annotation is used to detect any changes in ClusterConfiguration and trigger machine rollout in KCP.
-	KThreesServerConfigurationAnnotation = "controlplane.cluster.x-k8s.io/kthrees-server-configuration"
+	KZerosServerConfigurationAnnotation = "controlplane.cluster.x-k8s.io/kzeros-server-configuration"
 
 	// SkipCoreDNSAnnotation annotation explicitly skips reconciling CoreDNS if set
 	SkipCoreDNSAnnotation = "controlplane.cluster.x-k8s.io/skip-coredns"
 )
 
-// KThreesControlPlaneSpec defines the desired state of KThreesControlPlane
-type KThreesControlPlaneSpec struct {
+// KZerosControlPlaneSpec defines the desired state of KZerosControlPlane
+type KZerosControlPlaneSpec struct {
 	// Number of desired machines. Defaults to 1. When stacked etcd is used only
 	// odd numbers are permitted, as per [etcd best practice](https://etcd.io/docs/v3.3.12/faq/#why-an-odd-number-of-cluster-members).
 	// This is a pointer to distinguish between explicit zero and not specified.
@@ -51,13 +51,13 @@ type KThreesControlPlaneSpec struct {
 	// offered by an infrastructure provider.
 	InfrastructureTemplate corev1.ObjectReference `json:"infrastructureTemplate"`
 
-	// KThreesConfigSpec is a KThreesConfigSpec
+	// KZerosConfigSpec is a KZerosConfigSpec
 	// to use for initializing and joining machines to the control plane.
-	KThreesConfigSpec cabp3v1.KThreesConfigSpec `json:"kthreesConfigSpec"`
+	KZerosConfigSpec cabp3v1.KZerosConfigSpec `json:"kzerosConfigSpec"`
 
 	// UpgradeAfter is a field to indicate an upgrade should be performed
 	// after the specified time even if no changes have been made to the
-	// KThreesControlPlane
+	// KZerosControlPlane
 	// +optional
 	UpgradeAfter *metav1.Time `json:"upgradeAfter,omitempty"`
 
@@ -68,8 +68,8 @@ type KThreesControlPlaneSpec struct {
 	NodeDrainTimeout *metav1.Duration `json:"nodeDrainTimeout,omitempty"`
 }
 
-// KThreesControlPlaneStatus defines the observed state of KThreesControlPlane
-type KThreesControlPlaneStatus struct {
+// KZerosControlPlaneStatus defines the observed state of KZerosControlPlane
+type KZerosControlPlaneStatus struct {
 	// Selector is the label selector in string format to avoid introspection
 	// by clients, and is used to provide the CRD-based integration for the
 	// scale subresource and additional integrations for things like kubectl
@@ -105,7 +105,7 @@ type KThreesControlPlaneStatus struct {
 	// +optional
 	Initialized bool `json:"initialized"`
 
-	// Ready denotes that the KThreesControlPlane API Server is ready to
+	// Ready denotes that the KZerosControlPlane API Server is ready to
 	// receive requests.
 	// +optional
 	Ready bool `json:"ready"`
@@ -114,7 +114,7 @@ type KThreesControlPlaneStatus struct {
 	// state, and will be set to a token value suitable for
 	// programmatic interpretation.
 	// +optional
-	FailureReason errors.KThreesControlPlaneStatusError `json:"failureReason,omitempty"`
+	FailureReason errors.KZerosControlPlaneStatusError `json:"failureReason,omitempty"`
 
 	// ErrorMessage indicates that there is a terminal problem reconciling the
 	// state, and will be set to a descriptive error message.
@@ -125,7 +125,7 @@ type KThreesControlPlaneStatus struct {
 	// +optional
 	ObservedGeneration int64 `json:"observedGeneration,omitempty"`
 
-	// Conditions defines current service state of the KThreesControlPlane.
+	// Conditions defines current service state of the KZerosControlPlane.
 	// +optional
 	Conditions clusterv1.Conditions `json:"conditions,omitempty"`
 }
@@ -134,39 +134,39 @@ type KThreesControlPlaneStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:subresource:scale:specpath=.spec.replicas,statuspath=.status.replicas,selectorpath=.status.selector
 // +kubebuilder:printcolumn:name="Initialized",type=boolean,JSONPath=".status.initialized",description="This denotes whether or not the control plane has the uploaded kubeadm-config configmap"
-// +kubebuilder:printcolumn:name="API Server Available",type=boolean,JSONPath=".status.ready",description="KThreesControlPlane API Server is ready to receive requests"
+// +kubebuilder:printcolumn:name="API Server Available",type=boolean,JSONPath=".status.ready",description="KZerosControlPlane API Server is ready to receive requests"
 // +kubebuilder:printcolumn:name="Version",type=string,JSONPath=".spec.version",description="Kubernetes version associated with this control plane"
 // +kubebuilder:printcolumn:name="Replicas",type=integer,JSONPath=".status.replicas",description="Total number of non-terminated machines targeted by this control plane"
 // +kubebuilder:printcolumn:name="Ready",type=integer,JSONPath=".status.readyReplicas",description="Total number of fully running and ready control plane machines"
 // +kubebuilder:printcolumn:name="Updated",type=integer,JSONPath=".status.updatedReplicas",description="Total number of non-terminated machines targeted by this control plane that have the desired template spec"
 // +kubebuilder:printcolumn:name="Unavailable",type=integer,JSONPath=".status.unavailableReplicas",description="Total number of unavailable machines targeted by this control plane"
 
-// KThreesControlPlane is the Schema for the kthreescontrolplanes API
-type KThreesControlPlane struct {
+// KZerosControlPlane is the Schema for the kzeroscontrolplanes API
+type KZerosControlPlane struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   KThreesControlPlaneSpec   `json:"spec,omitempty"`
-	Status KThreesControlPlaneStatus `json:"status,omitempty"`
+	Spec   KZerosControlPlaneSpec   `json:"spec,omitempty"`
+	Status KZerosControlPlaneStatus `json:"status,omitempty"`
 }
 
-func (in *KThreesControlPlane) GetConditions() clusterv1.Conditions {
+func (in *KZerosControlPlane) GetConditions() clusterv1.Conditions {
 	return in.Status.Conditions
 }
 
-func (in *KThreesControlPlane) SetConditions(conditions clusterv1.Conditions) {
+func (in *KZerosControlPlane) SetConditions(conditions clusterv1.Conditions) {
 	in.Status.Conditions = conditions
 }
 
 // +kubebuilder:object:root=true
 
-// KThreesControlPlaneList contains a list of KThreesControlPlane
-type KThreesControlPlaneList struct {
+// KZerosControlPlaneList contains a list of KZerosControlPlane
+type KZerosControlPlaneList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []KThreesControlPlane `json:"items"`
+	Items           []KZerosControlPlane `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&KThreesControlPlane{}, &KThreesControlPlaneList{})
+	SchemeBuilder.Register(&KZerosControlPlane{}, &KZerosControlPlaneList{})
 }

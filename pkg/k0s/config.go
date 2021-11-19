@@ -1,12 +1,12 @@
-package k3s
+package k0s
 
 import (
-	bootstrapv1 "github.com/zawachte-msft/cluster-api-k3s/bootstrap/api/v1alpha3"
+	bootstrapv1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
 )
 
-const DefaultK3sConfigLocation = "/etc/rancher/k3s/config.yaml"
+const DefaultK0sConfigLocation = "/etc/rancher/k0s/config.yaml"
 
-type K3sServerConfig struct {
+type K0sServerConfig struct {
 	DisableCloudController    bool     `json:"disable-cloud-controller,omitempty"`
 	KubeAPIServerArgs         []string `json:"kube-apiserver-arg,omitempty"`
 	KubeControllerManagerArgs []string `json:"kube-controller-manager-arg,omitempty"`
@@ -21,10 +21,10 @@ type K3sServerConfig struct {
 	ClusterDomain             string   `json:"cluster-domain,omitempty"`
 	DisableComponents         []string `json:"disable,omitempty"`
 	ClusterInit               bool     `json:"cluster-init,omitempty"`
-	K3sAgentConfig            `json:",inline"`
+	K0sAgentConfig            `json:",inline"`
 }
 
-type K3sAgentConfig struct {
+type K0sAgentConfig struct {
 	Token           string   `json:"token,omitempty"`
 	Server          string   `json:"server,omitempty"`
 	KubeletArgs     []string `json:"kubelet-arg,omitempty"`
@@ -34,8 +34,8 @@ type K3sAgentConfig struct {
 	KubeProxyArgs   []string `json:"kube-proxy-arg,omitempty"`
 }
 
-func GenerateInitControlPlaneConfig(controlPlaneEndpoint string, token string, serverConfig bootstrapv1.KThreesServerConfig, agentConfig bootstrapv1.KThreesAgentConfig) K3sServerConfig {
-	k3sServerConfig := K3sServerConfig{
+func GenerateInitControlPlaneConfig(controlPlaneEndpoint string, token string, serverConfig bootstrapv1.KZerosServerConfig, agentConfig bootstrapv1.KZerosAgentConfig) K0sServerConfig {
+	k0sServerConfig := K0sServerConfig{
 		DisableCloudController:    true,
 		ClusterInit:               true,
 		KubeAPIServerArgs:         append(serverConfig.KubeAPIServerArgs, "anonymous-auth=true"),
@@ -52,7 +52,7 @@ func GenerateInitControlPlaneConfig(controlPlaneEndpoint string, token string, s
 		DisableComponents:         serverConfig.DisableComponents,
 	}
 
-	k3sServerConfig.K3sAgentConfig = K3sAgentConfig{
+	k0sServerConfig.K0sAgentConfig = K0sAgentConfig{
 		Token:           token,
 		KubeletArgs:     append(agentConfig.KubeletArgs, "cloud-provider=external"),
 		NodeLabels:      agentConfig.NodeLabels,
@@ -61,12 +61,12 @@ func GenerateInitControlPlaneConfig(controlPlaneEndpoint string, token string, s
 		KubeProxyArgs:   agentConfig.KubeProxyArgs,
 	}
 
-	return k3sServerConfig
+	return k0sServerConfig
 }
 
-func GenerateJoinControlPlaneConfig(serverUrl string, token string, controlplaneendpoint string, serverConfig bootstrapv1.KThreesServerConfig, agentConfig bootstrapv1.KThreesAgentConfig) K3sServerConfig {
+func GenerateJoinControlPlaneConfig(serverUrl string, token string, controlplaneendpoint string, serverConfig bootstrapv1.KZerosServerConfig, agentConfig bootstrapv1.KZerosAgentConfig) K0sServerConfig {
 
-	k3sServerConfig := K3sServerConfig{
+	k0sServerConfig := K0sServerConfig{
 		DisableCloudController:    true,
 		KubeAPIServerArgs:         append(serverConfig.KubeAPIServerArgs, "anonymous-auth=true"),
 		TLSSan:                    append(serverConfig.TLSSan, controlplaneendpoint),
@@ -82,7 +82,7 @@ func GenerateJoinControlPlaneConfig(serverUrl string, token string, controlplane
 		DisableComponents:         serverConfig.DisableComponents,
 	}
 
-	k3sServerConfig.K3sAgentConfig = K3sAgentConfig{
+	k0sServerConfig.K0sAgentConfig = K0sAgentConfig{
 		Token:           token,
 		Server:          serverUrl,
 		KubeletArgs:     append(agentConfig.KubeletArgs, "cloud-provider=external"),
@@ -92,11 +92,11 @@ func GenerateJoinControlPlaneConfig(serverUrl string, token string, controlplane
 		KubeProxyArgs:   agentConfig.KubeProxyArgs,
 	}
 
-	return k3sServerConfig
+	return k0sServerConfig
 }
 
-func GenerateWorkerConfig(serverUrl string, token string, agentConfig bootstrapv1.KThreesAgentConfig) K3sAgentConfig {
-	return K3sAgentConfig{
+func GenerateWorkerConfig(serverUrl string, token string, agentConfig bootstrapv1.KZerosAgentConfig) K0sAgentConfig {
+	return K0sAgentConfig{
 		Server:          serverUrl,
 		Token:           token,
 		KubeletArgs:     append(agentConfig.KubeletArgs, "cloud-provider=external"),

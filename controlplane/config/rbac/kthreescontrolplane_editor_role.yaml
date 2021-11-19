@@ -1,13 +1,13 @@
-# permissions for end users to edit kthreescontrolplanes.
+# permissions for end users to edit kzeroscontrolplanes.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: kthreescontrolplane-editor-role
+  name: kzeroscontrolplane-editor-role
 rules:
 - apiGroups:
   - controlplane.cluster.x-k8s.io
   resources:
-  - kthreescontrolplanes
+  - kzeroscontrolplanes
   verbs:
   - create
   - delete
@@ -19,6 +19,6 @@ rules:
 - apiGroups:
   - controlplane.cluster.x-k8s.io
   resources:
-  - kthreescontrolplanes/status
+  - kzeroscontrolplanes/status
   verbs:
   - get

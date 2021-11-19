@@ -1,4 +1,4 @@
-module github.com/zawachte-msft/cluster-api-k3s
+module github.com/zawachte-msft/cluster-api-k0s
 
 go 1.13
 

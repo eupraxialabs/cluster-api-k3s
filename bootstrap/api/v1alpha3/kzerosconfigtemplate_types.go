@@ -20,38 +20,38 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// KThreesConfigTemplateSpec defines the desired state of KThreesConfigTemplate
-type KThreesConfigTemplateSpec struct {
+// KZerosConfigTemplateSpec defines the desired state of KZerosConfigTemplate
+type KZerosConfigTemplateSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	Template KThreesConfigTemplateResource `json:"template"`
+	Template KZerosConfigTemplateResource `json:"template"`
 }
 
-// KThreesConfigTemplateResource defines the Template structure
-type KThreesConfigTemplateResource struct {
-	Spec KThreesConfigSpec `json:"spec,omitempty"`
+// KZerosConfigTemplateResource defines the Template structure
+type KZerosConfigTemplateResource struct {
+	Spec KZerosConfigSpec `json:"spec,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// KThreesConfigTemplate is the Schema for the kthreesconfigtemplates API
-type KThreesConfigTemplate struct {
+// KZerosConfigTemplate is the Schema for the kzerosconfigtemplates API
+type KZerosConfigTemplate struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec KThreesConfigTemplateSpec `json:"spec,omitempty"`
+	Spec KZerosConfigTemplateSpec `json:"spec,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// KThreesConfigTemplateList contains a list of KThreesConfigTemplate
-type KThreesConfigTemplateList struct {
+// KZerosConfigTemplateList contains a list of KZerosConfigTemplate
+type KZerosConfigTemplateList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []KThreesConfigTemplate `json:"items"`
+	Items           []KZerosConfigTemplate `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&KThreesConfigTemplate{}, &KThreesConfigTemplateList{})
+	SchemeBuilder.Register(&KZerosConfigTemplate{}, &KZerosConfigTemplateList{})
 }

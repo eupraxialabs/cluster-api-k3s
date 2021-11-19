@@ -23,7 +23,7 @@ rules:
 - apiGroups:
   - bootstrap.cluster.x-k8s.io
   resources:
-  - kthreesconfigs
+  - kzerosconfigs
   verbs:
   - create
   - delete
@@ -35,7 +35,7 @@ rules:
 - apiGroups:
   - bootstrap.cluster.x-k8s.io
   resources:
-  - kthreesconfigs/status
+  - kzerosconfigs/status
   verbs:
   - create
   - delete

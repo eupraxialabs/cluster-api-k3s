@@ -1,4 +1,4 @@
-package k3s
+package k0s
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 	"sigs.k8s.io/cluster-api/controllers/remote"
 
-	"github.com/zawachte-msft/cluster-api-k3s/pkg/machinefilters"
+	"github.com/zawachte-msft/cluster-api-k0s/pkg/machinefilters"
 
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	ctrlclient "sigs.k8s.io/controller-runtime/pkg/client"

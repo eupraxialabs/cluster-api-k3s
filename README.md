@@ -1,18 +1,18 @@
-# Cluster API k3s
+# Cluster API k0s from Mirantis
 
-Cluster API bootstrap provider k3s (CABP3) is a component of [Cluster API](https://github.com/kubernetes-sigs/cluster-api/blob/master/README.md) that is responsible for generating a cloud-init script to turn a Machine into a Kubernetes Node; this implementation brings up [k3s](https://k3s.io/) clusters instead of full kubernetes clusters.
+Cluster API bootstrap provider k0s (CABP0) is a component of [Cluster API](https://github.com/kubernetes-sigs/cluster-api/blob/master/README.md) that is responsible for generating a cloud-init script to turn a Machine into a Kubernetes Node; this implementation brings up [k0s](https://k0sproject.io/) clusters instead of full kubernetes clusters.
 
-CABP3 is the bootstrap component of Cluster API for k3s and brings in the following CRDS and controllers:
-- k3s bootstrap provider (KThrees, KThreesTemplate)
+CABP0 is the bootstrap component of Cluster API for k0s and brings in the following CRDS and controllers:
+- k0s bootstrap provider (KZeros, KZerosTemplate)
 
-Cluster API ControlPlane provider k3s (CACP3) is a component of [Cluster API](https://github.com/kubernetes-sigs/cluster-api/blob/master/README.md) that is responsible for managing the lifecycle of control plane machines for k3s; this implementation brings up [k3s](https://k3s.io/) clusters instead of full kubernetes clusters.
+Cluster API ControlPlane provider k0s (CACP0) is a component of [Cluster API](https://github.com/kubernetes-sigs/cluster-api/blob/master/README.md) that is responsible for managing the lifecycle of control plane machines for k0s; this implementation brings up [k0s](https://k0sproject.io/) clusters instead of full kubernetes clusters.
 
-CACP3 is the controlplane component of Cluster API for k3s and brings in the following CRDS and controllers:
-- k3s controlplane provider (KThreesControlPlane)
+CACP0 is the controlplane component of Cluster API for k0s and brings in the following CRDS and controllers:
+- k0s controlplane provider (KZerosControlPlane)
 
 ## Testing it out.
 
-**Warning**: Project and documentation are in an early stage, there is an assumption that an user of this provider is already familiar with ClusterAPI.  
+**Warning**: This project and documentation are in an early stage. There is an assumption that an user of this provider is already familiar with Cluster API (CAPI).  
 
 
 ### Prerequisites
@@ -21,17 +21,17 @@ Check out the [ClusterAPI Quickstart](https://cluster-api.sigs.k8s.io/user/quick
 
 Three main pieces are 
 
-1. Bootstrap cluster. In the `samples/azure/azure-setup.sh` script, I use [k3d](https://k3d.io/), but feel free to use [kind](https://kind.sigs.k8s.io/) as well.
+1. Bootstrap cluster. In the `samples/azure/azure-setup.sh` script, We use [k3d](https://k3d.io/), but feel free to use [kind](https://kind.sigs.k8s.io/) as well.
 2. clusterctl. Please check out [ClusterAPI Quickstart](https://cluster-api.sigs.k8s.io/user/quick-start.html) for instructions.
 3. Azure Service Principals. For more information go to [CAPZ Getting Started](https://github.com/kubernetes-sigs/cluster-api-provider-azure/blob/master/docs/getting-started.md)
 
-CABP3 has been tested only on with an Azure and AzureStackHCI environment. To try out the Azure flow, fork the repo and look at `samples/azure/azure-setup.sh`.
+CABP0 has been tested only on with an Azure and AzureStackHCI environment. To try out the Azure flow, fork the repo and look at `samples/azure/azure-setup.sh`.
 
-CACP3 is alive! Sample now includes the K3s Control Plane Provider. If you run the sample script you will get a cluster with a control plane and two workers.
+CACP0 is available! Sample now includes the K0s Control Plane Provider. If you run the sample script you will get a cluster with a control plane and two workers.
 
 Then run the following to scale the control plane...
 ```sh
-kubectl scale kthreescontrolplane ${CLUSTER_NAME}-control-plane --replicas 3
+kubectl scale kzeroscontrolplane ${CLUSTER_NAME}-control-plane --replicas 3
 ```
 
 ### Known Issues

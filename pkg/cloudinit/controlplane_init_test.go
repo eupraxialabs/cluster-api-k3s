@@ -20,8 +20,8 @@ import (
 	"testing"
 
 	. "github.com/onsi/gomega"
-	infrav1 "github.com/zawachte-msft/cluster-api-k3s/bootstrap/api/v1alpha3"
-	"github.com/zawachte-msft/cluster-api-k3s/pkg/secret"
+	infrav1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
+	"github.com/zawachte-msft/cluster-api-k0s/pkg/secret"
 )
 
 func TestControlPlaneInit(t *testing.T) {
@@ -30,8 +30,8 @@ func TestControlPlaneInit(t *testing.T) {
 
 	cpinput := &ControlPlaneInput{
 		BaseUserData: BaseUserData{
-			PreK3sCommands:  nil,
-			PostK3sCommands: nil,
+			PreK0sCommands:  nil,
+			PostK0sCommands: nil,
 			AdditionalFiles: []infrav1.File{
 				{
 					Path:     "/tmp/my-path",

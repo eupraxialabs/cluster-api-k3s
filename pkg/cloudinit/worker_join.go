@@ -22,9 +22,9 @@ const (
 	workerCloudInit = `{{.Header}}
 {{template "files" .WriteFiles}}
 runcmd:
-{{- template "commands" .PreK3sCommands }}
-  - 'curl -sfL https://get.k3s.io |  INSTALL_K3S_VERSION=%s sh -s - agent'
-{{- template "commands" .PostK3sCommands }}
+{{- template "commands" .PreK0sCommands }}
+  - 'curl -sfL https://get.k0s.io |  INSTALL_K3S_VERSION=%s sh -s - agent'
+{{- template "commands" .PostK0sCommands }}
 `
 )
 
@@ -39,7 +39,7 @@ func NewWorker(input *WorkerInput) ([]byte, error) {
 	input.WriteFiles = append(input.WriteFiles, input.AdditionalFiles...)
 	input.WriteFiles = append(input.WriteFiles, input.ConfigFile)
 
-	workerCloudInitWithVersion := fmt.Sprintf(workerCloudInit, input.K3sVersion)
+	workerCloudInitWithVersion := fmt.Sprintf(workerCloudInit, input.K0sVersion)
 	userData, err := generate("Worker", workerCloudInitWithVersion, input)
 	if err != nil {
 		return nil, err

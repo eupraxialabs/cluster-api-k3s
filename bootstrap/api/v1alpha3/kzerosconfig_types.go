@@ -24,34 +24,34 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// KThreesConfigSpec defines the desired state of KThreesConfig
-type KThreesConfigSpec struct {
+// KZerosConfigSpec defines the desired state of KZerosConfig
+type KZerosConfigSpec struct {
 	// Files specifies extra files to be passed to user_data upon creation.
 	// +optional
 	Files []File `json:"files,omitempty"`
 
-	// PreK3sCommands specifies extra commands to run before k3s setup runs
+	// PreK0sCommands specifies extra commands to run before k0s setup runs
 	// +optional
-	PreK3sCommands []string `json:"preK3sCommands,omitempty"`
+	PreK0sCommands []string `json:"preK0sCommands,omitempty"`
 
-	// PostK3sCommands specifies extra commands to run after k3s setup runs
+	// PostK0sCommands specifies extra commands to run after k0s setup runs
 	// +optional
-	PostK3sCommands []string `json:"postK3sCommands,omitempty"`
+	PostK0sCommands []string `json:"postK0sCommands,omitempty"`
 
 	// AgentConfig specifies configuration for the agent nodes
 	// +optional
-	AgentConfig KThreesAgentConfig `json:"agentConfig,omitempty"`
+	AgentConfig KZerosAgentConfig `json:"agentConfig,omitempty"`
 
 	// ServerConfig specifies configuration for the agent nodes
 	// +optional
-	ServerConfig KThreesServerConfig `json:"serverConfig,omitempty"`
+	ServerConfig KZerosServerConfig `json:"serverConfig,omitempty"`
 
-	// Version specifies the k3s version
+	// Version specifies the k0s version
 	// +optional
 	Version string `json:"version,omitempty"`
 }
 
-type KThreesServerConfig struct {
+type KZerosServerConfig struct {
 	// KubeAPIServerArgs is a customized flag for kube-apiserver process
 	// +optional
 	KubeAPIServerArgs []string `json:"kubeAPIServerArg,omitempty"`
@@ -64,7 +64,7 @@ type KThreesServerConfig struct {
 	// +optional
 	TLSSan []string `json:"tlsSan,omitempty"`
 
-	// BindAddress k3s bind address (default: 0.0.0.0)
+	// BindAddress k0s bind address (default: 0.0.0.0)
 	// +optional
 	BindAddress string `json:"bindAddress,omitempty"`
 
@@ -96,12 +96,12 @@ type KThreesServerConfig struct {
 	// +optional
 	ClusterDomain string `json:"clusterDomain,omitempty"`
 
-	// DisableComponents  specifies extra commands to run before k3s setup runs
+	// DisableComponents  specifies extra commands to run before k0s setup runs
 	// +optional
 	DisableComponents []string `json:"disableComponents,omitempty"`
 }
 
-type KThreesAgentConfig struct {
+type KZerosAgentConfig struct {
 	// NodeLabels  Registering and starting kubelet with set of labels
 	// +optional
 	NodeLabels []string `json:"nodeLabels,omitempty"`
@@ -111,7 +111,7 @@ type KThreesAgentConfig struct {
 	NodeTaints []string `json:"nodeTaints,omitempty"`
 
 	// TODO: take in a object or secret and write to file. this is not useful
-	// PrivateRegistry  registry configuration file (default: "/etc/rancher/k3s/registries.yaml")
+	// PrivateRegistry  registry configuration file (default: "/etc/rancher/k0s/registries.yaml")
 	// +optional
 	PrivateRegistry string `json:"privateRegistry,omitempty"`
 
@@ -124,8 +124,8 @@ type KThreesAgentConfig struct {
 	KubeProxyArgs []string `json:"kubeProxyArgs,omitempty"`
 }
 
-// KThreesConfigStatus defines the observed state of KThreesConfig
-type KThreesConfigStatus struct {
+// KZerosConfigStatus defines the observed state of KZerosConfig
+type KZerosConfigStatus struct {
 	// Ready indicates the BootstrapData field is ready to be consumed
 	Ready bool `json:"ready,omitempty"`
 
@@ -147,7 +147,7 @@ type KThreesConfigStatus struct {
 	// +optional
 	ObservedGeneration int64 `json:"observedGeneration,omitempty"`
 
-	// Conditions defines current service state of the KThreesConfig.
+	// Conditions defines current service state of the KZerosConfig.
 	// +optional
 	Conditions clusterv1.Conditions `json:"conditions,omitempty"`
 }
@@ -155,30 +155,30 @@ type KThreesConfigStatus struct {
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 
-// KThreesConfig is the Schema for the kthreesconfigs API
-type KThreesConfig struct {
+// KZerosConfig is the Schema for the kzerosconfigs API
+type KZerosConfig struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   KThreesConfigSpec   `json:"spec,omitempty"`
-	Status KThreesConfigStatus `json:"status,omitempty"`
+	Spec   KZerosConfigSpec   `json:"spec,omitempty"`
+	Status KZerosConfigStatus `json:"status,omitempty"`
 }
 
-func (c *KThreesConfig) GetConditions() clusterv1.Conditions {
+func (c *KZerosConfig) GetConditions() clusterv1.Conditions {
 	return c.Status.Conditions
 }
 
-func (c *KThreesConfig) SetConditions(conditions clusterv1.Conditions) {
+func (c *KZerosConfig) SetConditions(conditions clusterv1.Conditions) {
 	c.Status.Conditions = conditions
 }
 
 // +kubebuilder:object:root=true
 
-// KThreesConfigList contains a list of KThreesConfig
-type KThreesConfigList struct {
+// KZerosConfigList contains a list of KZerosConfig
+type KZerosConfigList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []KThreesConfig `json:"items"`
+	Items           []KZerosConfig `json:"items"`
 }
 
 // Encoding specifies the cloud-init file encoding.
@@ -233,7 +233,7 @@ type FileSource struct {
 // The contents of the target Secret's Data field will be presented
 // as files using the keys in the Data field as the file names.
 type SecretFileSource struct {
-	// Name of the secret in the KThreesBootstrapConfig's namespace to use.
+	// Name of the secret in the KZerosBootstrapConfig's namespace to use.
 	Name string `json:"name"`
 
 	// Key is the key in the secret's data map for this value.
@@ -241,5 +241,5 @@ type SecretFileSource struct {
 }
 
 func init() {
-	SchemeBuilder.Register(&KThreesConfig{}, &KThreesConfigList{})
+	SchemeBuilder.Register(&KZerosConfig{}, &KZerosConfigList{})
 }

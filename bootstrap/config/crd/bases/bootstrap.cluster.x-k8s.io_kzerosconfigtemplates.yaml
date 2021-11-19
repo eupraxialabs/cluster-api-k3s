@@ -6,18 +6,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.3.0
   creationTimestamp: null
-  name: kthreesconfigtemplates.bootstrap.cluster.x-k8s.io
+  name: kzerosconfigtemplates.bootstrap.cluster.x-k8s.io
 spec:
   group: bootstrap.cluster.x-k8s.io
   names:
-    kind: KThreesConfigTemplate
-    listKind: KThreesConfigTemplateList
-    plural: kthreesconfigtemplates
-    singular: kthreesconfigtemplate
+    kind: KZerosConfigTemplate
+    listKind: KZerosConfigTemplateList
+    plural: kzerosconfigtemplates
+    singular: kzerosconfigtemplate
   scope: Namespaced
   validation:
     openAPIV3Schema:
-      description: KThreesConfigTemplate is the Schema for the kthreesconfigtemplates
+      description: KZerosConfigTemplate is the Schema for the kzerosconfigtemplates
         API
       properties:
         apiVersion:
@@ -33,13 +33,13 @@ spec:
         metadata:
           type: object
         spec:
-          description: KThreesConfigTemplateSpec defines the desired state of KThreesConfigTemplate
+          description: KZerosConfigTemplateSpec defines the desired state of KZerosConfigTemplate
           properties:
             template:
-              description: KThreesConfigTemplateResource defines the Template structure
+              description: KZerosConfigTemplateResource defines the Template structure
               properties:
                 spec:
-                  description: KThreesConfigSpec defines the desired state of KThreesConfig
+                  description: KZerosConfigSpec defines the desired state of KZerosConfig
                   properties:
                     agentConfig:
                       description: AgentConfig specifies configuration for the agent
@@ -71,7 +71,7 @@ spec:
                         privateRegistry:
                           description: 'TODO: take in a object or secret and write
                             to file. this is not useful PrivateRegistry  registry
-                            configuration file (default: "/etc/rancher/k3s/registries.yaml")'
+                            configuration file (default: "/etc/rancher/k0s/registries.yaml")'
                           type: string
                       type: object
                     files:
@@ -97,7 +97,7 @@ spec:
                                       map for this value.
                                     type: string
                                   name:
-                                    description: Name of the secret in the KThreesBootstrapConfig's
+                                    description: Name of the secret in the KZerosBootstrapConfig's
                                       namespace to use.
                                     type: string
                                 required:
@@ -131,15 +131,15 @@ spec:
                         - path
                         type: object
                       type: array
-                    postK3sCommands:
-                      description: PostK3sCommands specifies extra commands to run
-                        after k3s setup runs
+                    postK0sCommands:
+                      description: PostK0sCommands specifies extra commands to run
+                        after k0s setup runs
                       items:
                         type: string
                       type: array
-                    preK3sCommands:
-                      description: PreK3sCommands specifies extra commands to run
-                        before k3s setup runs
+                    preK0sCommands:
+                      description: PreK0sCommands specifies extra commands to run
+                        before k0s setup runs
                       items:
                         type: string
                       type: array
@@ -158,7 +158,7 @@ spec:
                             (default: 0)'
                           type: string
                         bindAddress:
-                          description: 'BindAddress k3s bind address (default: 0.0.0.0)'
+                          description: 'BindAddress k0s bind address (default: 0.0.0.0)'
                           type: string
                         clusterCidr:
                           description: 'ClusterCidr  Network CIDR to use for pod IPs
@@ -173,7 +173,7 @@ spec:
                           type: string
                         disableComponents:
                           description: DisableComponents  specifies extra commands
-                            to run before k3s setup runs
+                            to run before k0s setup runs
                           items:
                             type: string
                           type: array
@@ -205,7 +205,7 @@ spec:
                           type: array
                       type: object
                     version:
-                      description: Version specifies the k3s version
+                      description: Version specifies the k0s version
                       type: string
                   type: object
               type: object

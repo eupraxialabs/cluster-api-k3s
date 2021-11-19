@@ -25,14 +25,14 @@ limitations under the License.
 //   - Updated Has to also check for equality of Machines
 //   - Removed unused methods
 
-package k3s
+package k0s
 
 import (
 	"sort"
 
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 
-	"github.com/zawachte-msft/cluster-api-k3s/pkg/machinefilters"
+	"github.com/eupraxialabs/cluster-api-k0s/pkg/machinefilters"
 
 	"sigs.k8s.io/cluster-api/util"
 	"sigs.k8s.io/cluster-api/util/conditions"

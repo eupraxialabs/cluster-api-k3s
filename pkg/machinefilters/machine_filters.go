@@ -17,14 +17,14 @@ limitations under the License.
 package machinefilters
 
 import (
-	bootstrapv1 "github.com/zawachte-msft/cluster-api-k3s/bootstrap/api/v1alpha3"
+	bootstrapv1 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/selection"
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 
-	controlplanev1 "github.com/zawachte-msft/cluster-api-k3s/controlplane/api/v1alpha3"
+	controlplanev1 "github.com/zawachte-msft/cluster-api-k0s/controlplane/api/v1alpha3"
 
 	"sigs.k8s.io/cluster-api/util"
 	"sigs.k8s.io/cluster-api/util/conditions"
@@ -198,17 +198,17 @@ func ControlPlaneSelectorForCluster(clusterName string) labels.Selector {
 }
 
 // MatchesKCPConfiguration returns a filter to find all machines that matches with KCP config and do not require any rollout.
-// Kubernetes version, infrastructure template, and KThreesConfig field need to be equivalent.
-func MatchesKCPConfiguration(infraConfigs map[string]*unstructured.Unstructured, machineConfigs map[string]*bootstrapv1.KThreesConfig, kcp *controlplanev1.KThreesControlPlane) func(machine *clusterv1.Machine) bool {
+// Kubernetes version, infrastructure template, and KZerosConfig field need to be equivalent.
+func MatchesKCPConfiguration(infraConfigs map[string]*unstructured.Unstructured, machineConfigs map[string]*bootstrapv1.KZerosConfig, kcp *controlplanev1.KZerosControlPlane) func(machine *clusterv1.Machine) bool {
 	return And(
 		MatchesKubernetesVersion(kcp.Spec.Version),
-		MatchesKThreesBootstrapConfig(machineConfigs, kcp),
+		MatchesKZerosBootstrapConfig(machineConfigs, kcp),
 		MatchesTemplateClonedFrom(infraConfigs, kcp),
 	)
 }
 
 // MatchesTemplateClonedFrom returns a filter to find all machines that match a given KCP infra template.
-func MatchesTemplateClonedFrom(infraConfigs map[string]*unstructured.Unstructured, kcp *controlplanev1.KThreesControlPlane) Func {
+func MatchesTemplateClonedFrom(infraConfigs map[string]*unstructured.Unstructured, kcp *controlplanev1.KZerosControlPlane) Func {
 	return func(machine *clusterv1.Machine) bool {
 
 		if machine == nil {
@@ -251,24 +251,24 @@ func MatchesKubernetesVersion(kubernetesVersion string) Func {
 	}
 }
 
-// MatchesKThreesBootstrapConfig checks if machine's KThreesConfigSpec is equivalent with KCP's KThreesConfigSpec.
-func MatchesKThreesBootstrapConfig(machineConfigs map[string]*bootstrapv1.KThreesConfig, kcp *controlplanev1.KThreesControlPlane) Func {
+// MatchesKZerosBootstrapConfig checks if machine's KZerosConfigSpec is equivalent with KCP's KZerosConfigSpec.
+func MatchesKZerosBootstrapConfig(machineConfigs map[string]*bootstrapv1.KZerosConfig, kcp *controlplanev1.KZerosControlPlane) Func {
 	return func(machine *clusterv1.Machine) bool {
 		return true
 	}
 }
 
-// getAdjustedKcpConfig takes the KThreesConfigSpec from KCP and applies the transformations required
-// to allow a comparison with the KThreesConfig referenced from the machine.
-// NOTE: The KCP controller applies a set of transformations when creating a KThreesConfig referenced from the machine,
+// getAdjustedKcpConfig takes the KZerosConfigSpec from KCP and applies the transformations required
+// to allow a comparison with the KZerosConfig referenced from the machine.
+// NOTE: The KCP controller applies a set of transformations when creating a KZerosConfig referenced from the machine,
 // mostly depending on the fact that the machine was the initial control plane node or a joining control plane node.
-// In this function we don't have such information, so we are making the KThreesConfigSpec similar to the KThreesConfig.
-func getAdjustedKcpConfig(kcp *controlplanev1.KThreesControlPlane, machineConfig *bootstrapv1.KThreesConfig) *bootstrapv1.KThreesConfigSpec {
+// In this function we don't have such information, so we are making the KZerosConfigSpec similar to the KZerosConfig.
+func getAdjustedKcpConfig(kcp *controlplanev1.KZerosControlPlane, machineConfig *bootstrapv1.KZerosConfig) *bootstrapv1.KZerosConfigSpec {
 
-	return &kcp.Spec.KThreesConfigSpec
+	return &kcp.Spec.KZerosConfigSpec
 }
 
 // cleanupConfigFields cleanups all the fields that are not relevant for the comparison.
-func cleanupConfigFields(kcpConfig *bootstrapv1.KThreesConfigSpec, machineConfig *bootstrapv1.KThreesConfig) {
+func cleanupConfigFields(kcpConfig *bootstrapv1.KZerosConfigSpec, machineConfig *bootstrapv1.KZerosConfig) {
 
 }

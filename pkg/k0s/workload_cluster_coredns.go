@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package k3s
+package k0s
 
 import (
 	"context"
@@ -22,7 +22,7 @@ import (
 
 	"github.com/coredns/corefile-migration/migration"
 	"github.com/pkg/errors"
-	controlplanev1 "github.com/zawachte-msft/cluster-api-k3s/controlplane/api/v1alpha3"
+	controlplanev1 "github.com/zawachte-msft/cluster-api-k0s/controlplane/api/v1alpha3"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -67,18 +67,18 @@ type coreDNSInfo struct {
 
 // UpdateCoreDNS updates the kubeadm configmap, coredns corefile and coredns
 // deployment.
-func (w *Workload) UpdateCoreDNS(ctx context.Context, kcp *controlplanev1.KThreesControlPlane) error {
+func (w *Workload) UpdateCoreDNS(ctx context.Context, kcp *controlplanev1.KZerosControlPlane) error {
 	// Return early if we've been asked to skip CoreDNS upgrades entirely.
 	if _, ok := kcp.Annotations[controlplanev1.SkipCoreDNSAnnotation]; ok {
 		return nil
 	}
 	/**
 	// Return early if the configuration is nil.
-	if kcp.Spec.KThreesConfigSpec.ServerConfig == KThreesServerConfig {
+	if kcp.Spec.KZerosConfigSpec.ServerConfig == KZerosServerConfig {
 		return nil
 	}
 
-	clusterConfig := kcp.Spec.KThreesConfigSpec.ServerConfig
+	clusterConfig := kcp.Spec.KZerosConfigSpec.ServerConfig
 
 	// Return early if the type is anything other than empty (default), or CoreDNS.
 	if clusterConfig.DNS.Type != "" && clusterConfig.DNS.Type != kubeadmv1.CoreDNS {

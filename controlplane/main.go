@@ -27,10 +27,10 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	controlplanev1alpha3 "github.com/zawachte-msft/cluster-api-k3s/controlplane/api/v1alpha3"
-	"github.com/zawachte-msft/cluster-api-k3s/controlplane/controllers"
+	controlplanev1alpha3 "github.com/zawachte-msft/cluster-api-k0s/controlplane/api/v1alpha3"
+	"github.com/zawachte-msft/cluster-api-k0s/controlplane/controllers"
 
-	bootstrapv1alpha3 "github.com/zawachte-msft/cluster-api-k3s/bootstrap/api/v1alpha3"
+	bootstrapv1alpha3 "github.com/zawachte-msft/cluster-api-k0s/bootstrap/api/v1alpha3"
 	clusterv1alpha3 "sigs.k8s.io/cluster-api/api/v1alpha3"
 	expv1alpha3 "sigs.k8s.io/cluster-api/exp/api/v1alpha3"
 	// +kubebuilder:scaffold:imports
@@ -80,12 +80,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&controllers.KThreesControlPlaneReconciler{
+	if err = (&controllers.KZerosControlPlaneReconciler{
 		Client: mgr.GetClient(),
-		Log:    ctrl.Log.WithName("controllers").WithName("KThreesControlPlane"),
+		Log:    ctrl.Log.WithName("controllers").WithName("KZerosControlPlane"),
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create controller", "controller", "KThreesControlPlane")
+		setupLog.Error(err, "unable to create controller", "controller", "KZerosControlPlane")
 		os.Exit(1)
 	}
 	// +kubebuilder:scaffold:builder

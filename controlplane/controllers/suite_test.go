@@ -30,7 +30,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	controlplanev1alpha3 "github.com/zawachte-msft/cluster-api-k3s/controlplane/api/v1alpha3"
+	controlplanev1alpha3 "github.com/zawachte-msft/cluster-api-k0s/controlplane/api/v1alpha3"
 	// +kubebuilder:scaffold:imports
 )
 

@@ -18,19 +18,19 @@ package v1alpha3
 
 import clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 
-// Conditions and condition Reasons for the KThreesControlPlane object
+// Conditions and condition Reasons for the KZerosControlPlane object
 
 const (
-	// MachinesReady reports an aggregate of current status of the machines controlled by the KThreesControlPlane.
+	// MachinesReady reports an aggregate of current status of the machines controlled by the KZerosControlPlane.
 	MachinesReadyCondition clusterv1.ConditionType = "MachinesReady"
 )
 
 const (
 	// CertificatesAvailableCondition documents that cluster certificates were generated as part of the
-	// processing of a a KThreesControlPlane object.
+	// processing of a a KZerosControlPlane object.
 	CertificatesAvailableCondition clusterv1.ConditionType = "CertificatesAvailable"
 
-	// CertificatesGenerationFailedReason (Severity=Warning) documents a KThreesControlPlane controller detecting
+	// CertificatesGenerationFailedReason (Severity=Warning) documents a KZerosControlPlane controller detecting
 	// an error while generating certificates; those kind of errors are usually temporary and the controller
 	// automatically recover from them.
 	CertificatesGenerationFailedReason = "CertificatesGenerationFailed"
@@ -41,29 +41,29 @@ const (
 	// and so the control plane is available and an API server instance is ready for processing requests.
 	AvailableCondition clusterv1.ConditionType = "Available"
 
-	// WaitingForKthreesServerReason (Severity=Info) documents a KThreesControlPlane object waiting for the first
+	// WaitingForKthreesServerReason (Severity=Info) documents a KZerosControlPlane object waiting for the first
 	// control plane instance to complete the kubeadm init operation.
 	WaitingForKthreesServerReason = "WaitingForKthreesServer"
 )
 
 const (
-	// MachinesSpecUpToDateCondition documents that the spec of the machines controlled by the KThreesControlPlane
-	// is up to date. Whe this condition is false, the KThreesControlPlane is executing a rolling upgrade.
+	// MachinesSpecUpToDateCondition documents that the spec of the machines controlled by the KZerosControlPlane
+	// is up to date. Whe this condition is false, the KZerosControlPlane is executing a rolling upgrade.
 	MachinesSpecUpToDateCondition clusterv1.ConditionType = "MachinesSpecUpToDate"
 
-	// RollingUpdateInProgressReason (Severity=Warning) documents a KThreesControlPlane object executing a
+	// RollingUpdateInProgressReason (Severity=Warning) documents a KZerosControlPlane object executing a
 	// rolling upgrade for aligning the machines spec to the desired state.
 	RollingUpdateInProgressReason = "RollingUpdateInProgress"
 )
 
 const (
-	// ResizedCondition documents a KThreesControlPlane that is resizing the set of controlled machines.
+	// ResizedCondition documents a KZerosControlPlane that is resizing the set of controlled machines.
 	ResizedCondition clusterv1.ConditionType = "Resized"
 
-	// ScalingUpReason (Severity=Info) documents a KThreesControlPlane that is increasing the number of replicas.
+	// ScalingUpReason (Severity=Info) documents a KZerosControlPlane that is increasing the number of replicas.
 	ScalingUpReason = "ScalingUp"
 
-	// ScalingDownReason (Severity=Info) documents a KThreesControlPlane that is decreasing the number of replicas.
+	// ScalingDownReason (Severity=Info) documents a KZerosControlPlane that is decreasing the number of replicas.
 	ScalingDownReason = "ScalingDown"
 )
 
@@ -82,7 +82,7 @@ const (
 	// ControlPlaneComponentsInspectionFailedReason documents a failure in inspecting the control plane component status.
 	ControlPlaneComponentsInspectionFailedReason = "ControlPlaneComponentsInspectionFailed"
 
-	// MachineAgentHealthyCondition reports a machine's k3s agent's operational status.
+	// MachineAgentHealthyCondition reports a machine's k0s agent's operational status.
 	MachineAgentHealthyCondition clusterv1.ConditionType = "AgentHealthy"
 
 	// PodProvisioningReason (Severity=Info) documents a pod waiting to be provisioned i.e., Pod is in "Pending" phase.

@@ -12,7 +12,7 @@ spec:
       - 192.168.0.0/16
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
-    kind: KThreesControlPlane
+    kind: KZerosControlPlane
     name: ${CLUSTER_NAME}-control-plane
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
@@ -33,7 +33,7 @@ spec:
   subscriptionID: ${AZURE_SUBSCRIPTION_ID}
 ---
 apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
-kind: KThreesControlPlane
+kind: KZerosControlPlane
 metadata:
   name: ${CLUSTER_NAME}-control-plane
   namespace: default
@@ -42,7 +42,7 @@ spec:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: AzureMachineTemplate
     name: ${CLUSTER_NAME}-control-plane
-  kthreesConfigSpec:
+  kzerosConfigSpec:
     files:
     - contentFrom:
         secret:
@@ -52,7 +52,7 @@ spec:
       path: /etc/kubernetes/azure.json
       permissions: "0644"
   replicas: 1
-  version: v1.20.0+k3s2
+  version: v1.20.0+k0s2
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: AzureMachineTemplate
@@ -101,7 +101,7 @@ spec:
           version: latest
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
-kind: KThreesConfigTemplate
+kind: KZerosConfigTemplate
 metadata:
   name: ${CLUSTER_NAME}-md-0
   namespace: default
@@ -131,11 +131,11 @@ spec:
     matchLabels: null
   template:
     spec:
-      version: v1.20.0+k3s2
+      version: v1.20.0+k0s2
       bootstrap:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
-          kind: KThreesConfigTemplate
+          kind: KZerosConfigTemplate
           name: ${CLUSTER_NAME}-md-0
       clusterName: ${CLUSTER_NAME}
       infrastructureRef:

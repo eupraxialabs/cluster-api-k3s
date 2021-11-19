@@ -22,9 +22,9 @@ const (
 	controlPlaneCloudJoin = `{{.Header}}
 {{template "files" .WriteFiles}}
 runcmd:
-{{- template "commands" .PreK3sCommands }}
-  - 'curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=%s sh -s - server'
-{{- template "commands" .PostK3sCommands }}
+{{- template "commands" .PreK0sCommands }}
+  - 'curl -sfL https://get.k0s.io | INSTALL_K3S_VERSION=%s sh -s - server'
+{{- template "commands" .PostK0sCommands }}
 `
 )
 
@@ -34,7 +34,7 @@ func NewJoinControlPlane(input *ControlPlaneInput) ([]byte, error) {
 	input.WriteFiles = append(input.WriteFiles, input.AdditionalFiles...)
 	input.WriteFiles = append(input.WriteFiles, input.ConfigFile)
 
-	controlPlaneCloudJoinWithVersion := fmt.Sprintf(controlPlaneCloudJoin, input.K3sVersion)
+	controlPlaneCloudJoinWithVersion := fmt.Sprintf(controlPlaneCloudJoin, input.K0sVersion)
 	userData, err := generate("JoinControlplane", controlPlaneCloudJoinWithVersion, input)
 	if err != nil {
 		return nil, err

@@ -41,19 +41,19 @@ export PWD="$(pwd)"
 mkdir -p ~/.cluster-api
 cat samples/clusterctl.yaml | envsubst > ~/.cluster-api/clusterctl.yaml
 
-clusterctl init --infrastructure azure --bootstrap k3s --control-plane k3s
+clusterctl init --infrastructure azure --bootstrap k0s --control-plane k0s
 
 kubectl wait --for=condition=Available --timeout=5m -n capi-system deployment/capi-controller-manager
-kubectl wait --for=condition=Available --timeout=5m -n capi-k3s-control-plane-system deployment/capi-k3s-control-plane-controller-manager
+kubectl wait --for=condition=Available --timeout=5m -n capi-k0s-control-plane-system deployment/capi-k0s-control-plane-controller-manager
 kubectl wait --for=condition=Available --timeout=5m -n capz-system deployment/capz-controller-manager
-kubectl wait --for=condition=Available --timeout=5m -n capi-k3s-bootstrap-system deployment/capi-k3s-bootstrap-controller-manager
+kubectl wait --for=condition=Available --timeout=5m -n capi-k0s-bootstrap-system deployment/capi-k0s-bootstrap-controller-manager
 
 
-cat samples/azure/k3s-template.yaml | envsubst > samples/azure/k3s-cluster.yaml
+cat samples/azure/k0s-template.yaml | envsubst > samples/azure/k0s-cluster.yaml
 kubectl create configmap azure-ccm-addon --from-file=samples/azure/azure-ccm.yaml
 kubectl create configmap azure-cn-addon --from-file=samples/azure/azure-cn.yaml
-kubectl apply -f samples/azure/k3s-cluster.yaml
+kubectl apply -f samples/azure/k0s-cluster.yaml
 kubectl apply -f samples/azure/resource-set.yaml
 
 
-echo "once the cluster is up run clusterctl get kubeconfig $CLUSTER_NAME > k3s.yaml or kubectl scale kthreescontrolplane $CLUSTER_NAME-control-plane --replicas 3 for HA"
+echo "once the cluster is up run clusterctl get kubeconfig $CLUSTER_NAME > k0s.yaml or kubectl scale kzeroscontrolplane $CLUSTER_NAME-control-plane --replicas 3 for HA"

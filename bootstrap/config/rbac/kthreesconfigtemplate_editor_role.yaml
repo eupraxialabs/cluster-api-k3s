@@ -1,13 +1,13 @@
-# permissions for end users to edit kthreesconfigtemplates.
+# permissions for end users to edit kzerosconfigtemplates.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: kthreesconfigtemplate-editor-role
+  name: kzerosconfigtemplate-editor-role
 rules:
 - apiGroups:
   - bootstrap.cluster.x-k8s.io
   resources:
-  - kthreesconfigtemplates
+  - kzerosconfigtemplates
   verbs:
   - create
   - delete
@@ -19,6 +19,6 @@ rules:
 - apiGroups:
   - bootstrap.cluster.x-k8s.io
   resources:
-  - kthreesconfigtemplates/status
+  - kzerosconfigtemplates/status
   verbs:
   - get

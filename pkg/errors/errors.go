@@ -1,26 +1,26 @@
 package errors
 
-type KThreesControlPlaneStatusError string
+type KZerosControlPlaneStatusError string
 
 const (
-	// InvalidConfigurationKThreesControlPlaneError indicates that the KThrees control plane
+	// InvalidConfigurationKZerosControlPlaneError indicates that the KZeros control plane
 	// configuration is invalid.
-	InvalidConfigurationKThreesControlPlaneError KThreesControlPlaneStatusError = "InvalidConfiguration"
+	InvalidConfigurationKZerosControlPlaneError KZerosControlPlaneStatusError = "InvalidConfiguration"
 
-	// UnsupportedChangeKThreesControlPlaneError indicates that the KThrees control plane
+	// UnsupportedChangeKZerosControlPlaneError indicates that the KZeros control plane
 	// spec has been updated in an unsupported way that cannot be
 	// reconciled.
-	UnsupportedChangeKThreesControlPlaneError KThreesControlPlaneStatusError = "UnsupportedChange"
+	UnsupportedChangeKZerosControlPlaneError KZerosControlPlaneStatusError = "UnsupportedChange"
 
-	// CreateKThreesControlPlaneError indicates that an error was encountered
-	// when trying to create the KThrees control plane.
-	CreateKThreesControlPlaneError KThreesControlPlaneStatusError = "CreateError"
+	// CreateKZerosControlPlaneError indicates that an error was encountered
+	// when trying to create the KZeros control plane.
+	CreateKZerosControlPlaneError KZerosControlPlaneStatusError = "CreateError"
 
-	// UpdateKThreesControlPlaneError indicates that an error was encountered
-	// when trying to update the KThrees control plane.
-	UpdateKThreesControlPlaneError KThreesControlPlaneStatusError = "UpdateError"
+	// UpdateKZerosControlPlaneError indicates that an error was encountered
+	// when trying to update the KZeros control plane.
+	UpdateKZerosControlPlaneError KZerosControlPlaneStatusError = "UpdateError"
 
-	// DeleteKThreesControlPlaneError indicates that an error was encountered
-	// when trying to delete the KThrees control plane.
-	DeleteKThreesControlPlaneError KThreesControlPlaneStatusError = "DeleteError"
+	// DeleteKZerosControlPlaneError indicates that an error was encountered
+	// when trying to delete the KZeros control plane.
+	DeleteKZerosControlPlaneError KZerosControlPlaneStatusError = "DeleteError"
 )

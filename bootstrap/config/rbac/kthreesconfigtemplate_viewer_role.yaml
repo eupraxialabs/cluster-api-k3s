@@ -1,13 +1,13 @@
-# permissions for end users to view kthreesconfigtemplates.
+# permissions for end users to view kzerosconfigtemplates.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: kthreesconfigtemplate-viewer-role
+  name: kzerosconfigtemplate-viewer-role
 rules:
 - apiGroups:
   - bootstrap.cluster.x-k8s.io
   resources:
-  - kthreesconfigtemplates
+  - kzerosconfigtemplates
   verbs:
   - get
   - list
@@ -15,6 +15,6 @@ rules:
 - apiGroups:
   - bootstrap.cluster.x-k8s.io
   resources:
-  - kthreesconfigtemplates/status
+  - kzerosconfigtemplates/status
   verbs:
   - get
