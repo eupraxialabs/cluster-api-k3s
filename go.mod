@@ -1,4 +1,4 @@
-module github.com/zawachte-msft/cluster-api-k0s
+module gitlab.com/eupraxialabs/cluster-api-k0s
 
 go 1.13
 
