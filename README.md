@@ -1,4 +1,4 @@
-# Cluster API k0s from Mirantis
+# Cluster API k0s from Eupraxia Labs and Mirantis
 
 Cluster API bootstrap provider k0s (CABP0) is a component of [Cluster API](https://github.com/kubernetes-sigs/cluster-api/blob/master/README.md) that is responsible for generating a cloud-init script to turn a Machine into a Kubernetes Node; this implementation brings up [k0s](https://k0sproject.io/) clusters instead of full kubernetes clusters.
 
