@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bd06899-ca13-4ecd-aff0-44b901677945" name="Changes" comment="" />
+    <list default="true" id="ee57d4bd-41e7-4dbc-a9e6-1bd26b65eff1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,15 +18,8 @@
     <execution />
   </component>
   <component name="GOROOT" url="file:///usr/local/opt/go/libexec" />
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="main" />
-  </component>
-  <component name="Git.Rebase.Settings">
-    <option name="NEW_BASE" value="main" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
@@ -35,125 +32,52 @@
     <option name="namespace" value="default" />
   </component>
   <component name="MacroExpansionManager">
-    <option name="directoryName" value="46tlbuht" />
+    <option name="directoryName" value="aiyd6ieg" />
   </component>
-  <component name="ProjectId" id="216g6IAK7dJaDQfNigcjLpxEgTX" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="219Q1SnRdy7HTEhaFCUe9SKxWJi" />
   <component name="ProjectViewState">
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="TF_FMT" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="configurable..is.expanded" value="false" />
-    <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.18066406" />
-    <property name="project.structure.side.proportion" value="0.2606635" />
-    <property name="settings.editor.selected.configurable" value="go.dep" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="LiferayDockerServerConfiguration" factoryName="Liferay Docker Server">
       <option name="passParentEnvironments" value="true" />
       <option name="workspaceLocation" value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2bd06899-ca13-4ecd-aff0-44b901677945" name="Changes" comment="" />
-      <created>1637266792582</created>
+      <changelist id="ee57d4bd-41e7-4dbc-a9e6-1bd26b65eff1" name="Changes" comment="" />
+      <created>1637350614345</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1637266792582</updated>
-      <workItem from="1637266824620" duration="60000" />
-      <workItem from="1637267215178" duration="14782000" />
-      <workItem from="1637345727103" duration="918000" />
-      <workItem from="1637346702892" duration="962000" />
-      <workItem from="1637347702658" duration="868000" />
-      <workItem from="1637348614263" duration="762000" />
+      <updated>1637350614345</updated>
+      <workItem from="1637350626656" duration="402000" />
     </task>
-    <task id="LOCAL-00001" summary="Initial commit">
-      <created>1637334660154</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1637334660156</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Initial commit">
-      <created>1637345987571</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1637345987571</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Initial commit">
-      <created>1637347482885</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1637347482885</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Initial commit">
-      <created>1637347740847</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1637347740847</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Initial commit">
-      <created>1637348732940</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1637348732940</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Initial commit">
-      <created>1637349001133</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1637349001133</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_NEW_TODO" value="false" />
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">
