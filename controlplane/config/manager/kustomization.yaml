@@ -5,4 +5,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: quay.io/eupraxialabs/cluster-api-k0s
-  newTag: cp-controller-v0.1.2
+  newTag: cp-controller-v0.1.1
