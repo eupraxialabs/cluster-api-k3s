@@ -23,7 +23,7 @@ const (
 {{template "files" .WriteFiles}}
 runcmd:
 {{- template "commands" .PreK0sCommands }}
-  - 'curl -sfL https://get.k0s.io |  INSTALL_K3S_VERSION=%s sh -s - agent'
+  - 'curl -sfL https://get.k0s.io |  INSTALL_gitlab.com_VERSION=%s sh -s - agent'
 {{- template "commands" .PostK0sCommands }}
 `
 )

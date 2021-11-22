@@ -1,27 +1,27 @@
 if [ -z "${AZURE_SUBSCRIPTION_ID}" ]; then
-  echo "please set AZURE_SUBSCRIPTION_ID"
+  echo "Please set environment variable AZURE_SUBSCRIPTION_ID"
   exit 0
 fi
 
 if [ -z "${AZURE_TENANT_ID}" ]; then
-  echo "please set AZURE_TENANT_ID"
+  echo "Please set environment variable AZURE_TENANT_ID"
   exit 0
 fi
 
 
 if [ -z "${AZURE_CLIENT_ID}" ]; then
-  echo "please set AZURE_CLIENT_ID"
+  echo "Please set environment variable AZURE_CLIENT_ID"
   exit 0
 fi
 
 
 if [ -z "${AZURE_CLIENT_SECRET}" ]; then
-  echo "please set AZURE_CLIENT_SECRET"
+  echo "Please set environment variable AZURE_CLIENT_SECRET"
   exit 0
 fi
 
 if [ -z "${CLUSTER_NAME}" ]; then
-  echo "please set CLUSTER_NAME"
+  echo "Please set environment variable CLUSTER_NAME"
   exit 0
 fi
 

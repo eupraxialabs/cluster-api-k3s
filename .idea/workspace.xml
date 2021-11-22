@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee57d4bd-41e7-4dbc-a9e6-1bd26b65eff1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/config/rbac/role.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlplane/config/crd/bases/bootstrap.cluster.x-k8s.io_kzerosconfigs.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlplane/config/crd/bases/bootstrap.cluster.x-k8s.io_kzerosconfigtemplates.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlplane/config/crd/bases/controlplane.cluster.x-k8s.io_kzeroscontrolplanes.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/config/crd/bases/controlplane.cluster.x-k8s.io_kzeroscontrolplanes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/config/crd/bases/controlplane.cluster.x-k8s.io_kzeroscontrolplanes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlplane/config/manager/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/config/manager/kustomization.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlplane/config/samples/controlplane_v1alpha3_kthreescontrolplane.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/controlplane/config/samples/controlplane_v1alpha3_kthreescontrolplane.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/cloudinit/k3s.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/cloudinit/k0s.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/azure/azure-setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/samples/azure/azure-setup.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +40,6 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
@@ -85,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1637350614345</updated>
-      <workItem from="1637350626656" duration="10837000" />
+      <workItem from="1637350626656" duration="21351000" />
     </task>
     <task id="LOCAL-00001" summary="Added running k0s in Docker.">
       <created>1637351058387</created>
@@ -101,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637356475725</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="updated configs">
+      <created>1637420261408</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1637420261409</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,7 +115,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added running k0s in Docker." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added running k0s in Docker." />
+    <MESSAGE value="updated configs" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated configs" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
