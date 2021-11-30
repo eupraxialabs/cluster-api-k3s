@@ -1,11 +1,13 @@
 # Cluster API k0s from Eupraxia Labs and Mirantis
 
+### Mirantis Kubernetes and the newest Frontier - the Edge
+
 Cluster API (CAPI) Bootstrap Provider k0s (CABP0) is a component of [Cluster API](https://github.com/kubernetes-sigs/cluster-api/blob/master/README.md) that is responsible for generating a cloud-init script to turn a Machine into a Kubernetes Node; this implementation brings up a lightweight Kubernetes cluster distribution [k0s](https://k0sproject.io/) from Mirantis.
 
-CABP0 is the bootstrap component of Cluster API for k0s and brings in the following CRDS and controllers:
+CABP0 is the bootstrap component of Cluster API for k0s and brings in the following CRDs and controllers:
 - k0s bootstrap provider (KZeros, KZerosTemplate)
 
-Cluster API ControlPlane provider k0s (CACP0) is a component of [Cluster API](https://github.com/kubernetes-sigs/cluster-api/blob/master/README.md) that is responsible for managing the lifecycle of control plane machines for k0s; this implementation brings up the lightweight [k0s](https://k0sproject.io/) clusters for the edge.
+Cluster API ControlPlane provider k0s (CACP0) is a component of [Cluster API](https://github.com/kubernetes-sigs/cluster-api/blob/master/README.md) that is responsible for managing the lifecycle of control plane machines for k0s; this implementation brings up the lightweight [k0s](https://k0sproject.io/) clusters for the edge or the far edge.
 
 CACP0 is the controlplane component of Cluster API for k0s and brings in the following CRDS and controllers:
 - k0s controlplane provider (KZerosControlPlane)
