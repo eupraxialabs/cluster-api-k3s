@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee57d4bd-41e7-4dbc-a9e6-1bd26b65eff1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/samples/maas/k0s-template.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/samples/maas/maas-ccm.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/samples/maas/maas-cn.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/samples/maas/maas-setup.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/samples/maas/resource-set.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/config/rbac/kthreesconfig_editor_role.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/config/rbac/kzerosconfig_editor_role.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/config/rbac/kthreesconfig_viewer_role.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/config/rbac/kzerosconfig_viewer_role.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/config/rbac/kthreesconfigtemplate_editor_role.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/config/rbac/kzerosconfigtemplate_editor_role.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/config/rbac/kthreesconfigtemplate_viewer_role.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/config/rbac/kzerosconfigtemplate_viewer_role.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/config/samples/bootstrap_v1alpha1_kthreesconfig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/config/samples/bootstrap_v1alpha1_kzerosconfig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/config/samples/bootstrap_v1alpha3_kthreesconfigtemplate.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/config/samples/bootstrap_v1alpha3_kzerosconfigtemplate.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +54,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="sqlserver" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -52,6 +63,7 @@
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/samples/maas" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -59,11 +71,21 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/samples/maas" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="LiferayDockerServerConfiguration" factoryName="Liferay Docker Server">
       <option name="passParentEnvironments" value="true" />
       <option name="workspaceLocation" value="$PROJECT_DIR$" />
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -76,7 +98,7 @@
       <updated>1637350614345</updated>
       <workItem from="1637350626656" duration="23831000" />
       <workItem from="1637771138522" duration="1117000" />
-      <workItem from="1638302233747" duration="1485000" />
+      <workItem from="1638302233747" duration="16050000" />
     </task>
     <task id="LOCAL-00001" summary="Added running k0s in Docker.">
       <created>1637351058387</created>
@@ -106,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637609518769</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updated configs">
+      <created>1638306293863</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1638306293863</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

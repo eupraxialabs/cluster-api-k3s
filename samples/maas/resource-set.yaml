@@ -1,0 +1,28 @@
+---
+apiVersion: addons.cluster.x-k8s.io/v1alpha3
+kind: ClusterResourceSet
+metadata:
+  name: crs-maas-cn
+  namespace: default
+spec:
+  strategy: "ApplyOnce"
+  clusterSelector:
+    matchLabels:
+      ccm: maas
+  resources:
+    - name: maas-cn-addon
+      kind: ConfigMap
+---
+apiVersion: addons.cluster.x-k8s.io/v1alpha3
+kind: ClusterResourceSet
+metadata:
+  name: crs-maas-ccm
+  namespace: default
+spec:
+  strategy: "ApplyOnce"
+  clusterSelector:
+    matchLabels:
+      ccm: maas
+  resources:
+    - name: maas-ccm-addon
+      kind: ConfigMap
