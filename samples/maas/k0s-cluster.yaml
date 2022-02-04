@@ -1,7 +1,7 @@
 apiVersion: cluster.x-k8s.io/v1alpha3
 kind: Cluster
 metadata:
-  name: ${CLUSTER_NAME}
+  name: 
   namespace: default
   labels:
     ccm: maas
@@ -13,41 +13,41 @@ spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
     kind: KZerosControlPlane
-    name: ${CLUSTER_NAME}-control-plane
+    name: -control-plane
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: MaasCluster
-    name: ${CLUSTER_NAME}
+    name: 
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: MaasCluster
 metadata:
-  name: ${CLUSTER_NAME}
+  name: 
   namespace: default
 spec:
   location: eastus
   networkSpec:
     vnet:
-      name: ${CLUSTER_NAME}-vnet
-  resourceGroup: ${CLUSTER_NAME}
-  subscriptionID: ${AZURE_SUBSCRIPTION_ID}
+      name: -vnet
+  resourceGroup: 
+  subscriptionID: 
 ---
 apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
 kind: KZerosControlPlane
 metadata:
-  name: ${CLUSTER_NAME}-control-plane
+  name: -control-plane
   namespace: default
 spec:
   infrastructureTemplate:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: MaasMachineTemplate
-    name: ${CLUSTER_NAME}-control-plane
+    name: -control-plane
   kzerosConfigSpec:
     files:
     - contentFrom:
         secret:
           key: control-plane-maas.json
-          name: ${CLUSTER_NAME}-control-plane-maas-json
+          name: -control-plane-maas-json
       owner: root:root
       path: /etc/kubernetes/maas.json
       permissions: "0644"
@@ -57,7 +57,7 @@ spec:
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: MaasMachineTemplate
 metadata:
-  name: ${CLUSTER_NAME}-control-plane
+  name: -control-plane
   namespace: default
 spec:
   template:
@@ -80,7 +80,7 @@ spec:
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: AzureMachineTemplate
 metadata:
-  name: ${CLUSTER_NAME}-md-0
+  name: -md-0
   namespace: default
 spec:
   template:
@@ -103,7 +103,7 @@ spec:
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
 kind: KZerosConfigTemplate
 metadata:
-  name: ${CLUSTER_NAME}-md-0
+  name: -md-0
   namespace: default
 spec:
   template:
@@ -112,7 +112,7 @@ spec:
       - contentFrom:
           secret:
             key: worker-node-azure.json
-            name: ${CLUSTER_NAME}-md-0-azure-json
+            name: -md-0-azure-json
         owner: root:root
         path: /etc/kubernetes/azure.json
         permissions: "0644"
@@ -121,11 +121,11 @@ apiVersion: cluster.x-k8s.io/v1alpha3
 kind: MachineDeployment
 metadata:
   labels:
-    cluster.x-k8s.io/cluster-name: ${CLUSTER_NAME}
-  name: ${CLUSTER_NAME}-md-0
+    cluster.x-k8s.io/cluster-name: 
+  name: -md-0
   namespace: default
 spec:
-  clusterName: ${CLUSTER_NAME}
+  clusterName: 
   replicas: 2
   selector:
     matchLabels: null
@@ -136,9 +136,9 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
           kind: KZerosConfigTemplate
-          name: ${CLUSTER_NAME}-md-0
-      clusterName: ${CLUSTER_NAME}
+          name: -md-0
+      clusterName: 
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
         kind: MaasMachineTemplate
-        name: ${CLUSTER_NAME}-md-0
+        name: -md-0
