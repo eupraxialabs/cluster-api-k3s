@@ -5,4 +5,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: quay.io/eupraxialabs/cluster-api-k0s
-  newTag: bp-controller-v0.1.1
+  newTag: bp-controller-v0.8.1

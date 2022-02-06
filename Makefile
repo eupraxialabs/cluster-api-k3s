@@ -1,9 +1,9 @@
 
 # Image URL to use all building/pushing image targets
-BOOTSTRAP_IMG ?= quay.io/eupraxialabs/cluster-api-k0s:bp-controller-v0.1.1
+BOOTSTRAP_IMG ?= quay.io/eupraxialabs/cluster-api-k0s:bp-controller-v0.8.1
 
 # Image URL to use all building/pushing image targets
-CONTROLPLANE_IMG ?= quay.io/eupraxialabs/cluster-api-k0s:cp-controller-v0.1.1
+CONTROLPLANE_IMG ?= quay.io/eupraxialabs/cluster-api-k0s:cp-controller-v0.8.1
 
 
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
@@ -25,7 +25,7 @@ test-bootstrap: generate-bootstrap fmt vet manifests-bootstrap
 # Build manager binary
 manager-bootstrap: generate-bootstrap fmt vet
 	CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' -o bin/manager bootstrap/main.go
-
+    CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -a -ldflags '-extldflags "-static"' -o bin/manager bootstrap/main.go
 # Run against the configured Kubernetes cluster in ~/.kube/config
 run-bootstrap: generate-bootstrap fmt vet manifests-bootstrap
 	go run ./bootstrap/main.go
@@ -66,7 +66,9 @@ generate-bootstrap: controller-gen
 
 # Build the docker image
 docker-build-bootstrap: manager-bootstrap
+# docker buildx build --builder frontier-arm64 --push --platform=linux/amd64,linux/arm64 -t quay.io/eupraxialabs/cluster-api-provider-maas:0.8.1  .
 	docker build . -t ${BOOTSTRAP_IMG}
+    docker buildx build --builder frontier-arm64 --push --platform=linux/arm64 -t quay.io/eupraxialabs/cluster-api-k0s:bp-controller-v0.8.1 -f Dockerfile.singleManager
 
 # Push the docker image
 docker-push-bootstrap:
@@ -98,7 +100,7 @@ test-controlplane: generate-controlplane fmt vet manifests-controlplane
 # Build manager binary
 manager-controlplane: generate-controlplane fmt vet
 	CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' -o bin/manager controlplane/main.go
-
+    CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -a -ldflags '-extldflags "-static"' -o bin/manager controlplane/main.go
 # Run against the configured Kubernetes cluster in ~/.kube/config
 run-controlplane: generate-controlplane fmt vet manifests-controlplane
 	go run ./controlplane/main.go
@@ -131,6 +133,7 @@ generate-controlplane: controller-gen
 # Build the docker image
 docker-build-controlplane: manager-controlplane
 	docker build . -t ${CONTROLPLANE_IMG}
+    docker buildx build --builder frontier-arm64 --push --platform=linux/arm64 -t quay.io/eupraxialabs/cluster-api-k0s:cp-controller-v0.8.1 .
 
 # Push the docker image
 docker-push-controlplane:

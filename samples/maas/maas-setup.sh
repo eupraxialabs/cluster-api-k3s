@@ -1,3 +1,8 @@
+#####
+Rewrite for MAAS - developer1 12/31/2021
+#####
+
+
 if [ -z "${AZURE_SUBSCRIPTION_ID}" ]; then
   echo "Please set environment variable AZURE_SUBSCRIPTION_ID"
   exit 0

@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee57d4bd-41e7-4dbc-a9e6-1bd26b65eff1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/samples/maas/k0s-cluster.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile.multipleManagers" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/samples/maas/cluster-art-inc.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/maas/k0s-template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/maas/k0s-template.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/config/manager/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/config/manager/kustomization.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/deployment/bootstrap-k0s/v0.1.0/bootstrap-components.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/deployment/bootstrap-k0s/v0.1.0/bootstrap-components.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/deployment/control-plane-k0s/v0.1.0/control-plane-components.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/deployment/control-plane-k0s/v0.1.0/control-plane-components.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/maas/maas-setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/samples/maas/maas-setup.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +26,11 @@
   </component>
   <component name="GOROOT" url="file:///usr/local/opt/go/libexec" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
@@ -80,6 +92,11 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="LiferayDockerServerConfiguration" factoryName="Liferay Docker Server">
       <option name="passParentEnvironments" value="true" />
       <option name="workspaceLocation" value="$PROJECT_DIR$" />
@@ -97,6 +114,7 @@
       <workItem from="1637350626656" duration="23831000" />
       <workItem from="1637771138522" duration="1117000" />
       <workItem from="1638302233747" duration="22025000" />
+      <workItem from="1644003185265" duration="20687000" />
     </task>
     <task id="LOCAL-00001" summary="Added running k0s in Docker.">
       <created>1637351058387</created>
@@ -140,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639839689579</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="updated configs">
+      <created>1644003352434</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1644003352434</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
