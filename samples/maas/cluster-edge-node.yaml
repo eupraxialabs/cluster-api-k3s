@@ -1,14 +1,14 @@
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: MaasCluster
 metadata:
-  name: art-inc
+  name: edge
 spec:
   dnsDomain: maas
 ---
 apiVersion: cluster.x-k8s.io/v1alpha3
 kind: Cluster
 metadata:
-  name: art-inc
+  name: edge
 spec:
   clusterNetwork:
     services:
@@ -18,20 +18,20 @@ spec:
     serviceDomain: "cluster.local"
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
-    kind: K0sControlPlane
-    name: art-inc-cp
-    namespace: art-inc
+    kind: KZerosControlPlane
+    name: edge-cp
+    namespace: edge
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: MaasCluster
-    name: art-inc
-    namespace: capmaas-system
+    name: edge
+    namespace: edge
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: MaasMachineTemplate
 metadata:
-  name: art-inc-cp
-  namespace: default
+  name: edge-cp
+  namespace: edge
 spec:
   template:
     spec:
@@ -42,16 +42,16 @@ spec:
 apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
 kind: KZerosControlPlane
 metadata:
-  name: art-inc-cp
-  namespace: default
+  name: edge-cp
+  namespace: edge
 spec:
   replicas: 1
   version: v1.19.12
   infrastructureTemplate:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: MaasMachineTemplate
-    name: art-inc-cp
-    namespace: default
+    name: edge-cp
+    namespace: edge
   kzerosConfigSpec:
     clusterConfiguration: {}
     initConfiguration: {}
@@ -60,8 +60,8 @@ spec:
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: MaasMachineTemplate
 metadata:
-  name: art-inc-worker
-  namespace: default
+  name: edge-worker
+  namespace: edge
 spec:
   template:
     spec:
@@ -72,33 +72,33 @@ spec:
 apiVersion: cluster.x-k8s.io/v1alpha3
 kind: MachineDeployment
 metadata:
-  name: art-inc-worker
-  namespace: default
+  name: edge-worker
+  namespace: edge
 spec:
-  clusterName: art-inc
+  clusterName: edge
   replicas: 1
   selector:
     matchLabels:
-      cluster.x-k8s.io/cluster-name: art-inc
+      cluster.x-k8s.io/cluster-name: edge
   template:
     spec:
-      clusterName: art-inc
+      clusterName: edge
       version: 1.19.12
       bootstrap:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
           kind: KZerosConfigTemplate
-          name: art-inc-worker
+          name: edge-worker
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
         kind: MaasMachineTemplate
-        name: art-inc-worker
+        name: edge
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
 kind: KZerosConfigTemplate
 metadata:
-  name: art-inc-worker
-  namespace: default
+  name: edge-worker
+  namespace: edge
 spec:
   template:
     spec:
