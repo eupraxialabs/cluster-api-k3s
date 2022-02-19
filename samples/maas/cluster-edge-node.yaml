@@ -92,7 +92,7 @@ spec:
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
         kind: MaasMachineTemplate
-        name: edge
+        name: edge-worker
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
 kind: KZerosConfigTemplate
