@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee57d4bd-41e7-4dbc-a9e6-1bd26b65eff1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/samples/maas/maasmchinetemplete-test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clusterctl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/samples/maas/cluster-edge-node.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/maas/cluster-edge-node.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/maas/maasmchinetemplete-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/samples/maas/maasmachinetemplete-test.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,15 +87,15 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="LiferayDockerServerConfiguration" factoryName="Liferay Docker Server">
       <option name="passParentEnvironments" value="true" />
       <option name="workspaceLocation" value="$PROJECT_DIR$" />
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="nim.task.build.to.cache" enabled="true" />
-      </method>
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -108,7 +110,10 @@
       <workItem from="1637771138522" duration="1117000" />
       <workItem from="1638302233747" duration="22025000" />
       <workItem from="1644003185265" duration="34976000" />
-      <workItem from="1644935051876" duration="3165000" />
+      <workItem from="1644935051876" duration="5870000" />
+      <workItem from="1645369984096" duration="416000" />
+      <workItem from="1645370511220" duration="1966000" />
+      <workItem from="1645885740577" duration="17327000" />
     </task>
     <task id="LOCAL-00001" summary="Added running k0s in Docker.">
       <created>1637351058387</created>
@@ -173,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644246662443</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="updated configs">
+      <created>1645286798571</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1645286798571</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

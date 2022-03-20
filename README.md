@@ -12,6 +12,10 @@ Cluster API ControlPlane provider k0s (CACP0) is a component of [Cluster API](ht
 CACP0 is the controlplane component of Cluster API for k0s and brings in the following CRDS and controllers:
 - k0s controlplane provider (KZerosControlPlane)
 
+Integrating CCM (Cloud Controller Manager) with k0s basically means that the k0s cluster will be able to talk to cloud provider API in order to request and configure things like LoadBalancers (for ingress), apply appropriate labels for nodes, etc. The process differs between cloud providers (and it depends if cloud provider provides CCM in the first place).
+
+Additionally, an on-premise installation of MAAS-enabled **Federal Frontier** needs CCM to integrate with an on-site bare-metal load balancer.
+
 ## Testing it out.
 
 **Warning**: This project and documentation are in an early stage. There is an assumption that an user of this provider is already familiar with **Cluster API (CAPI)**.  
